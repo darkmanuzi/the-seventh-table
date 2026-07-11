@@ -1,0 +1,23 @@
+THE SEVENTH TABLE — V16 DIRECT FORMS
+
+What changed
+- Guest, Partner, Press and Licensing forms call a Netlify Function directly.
+- No Netlify HTTP POST notification is required.
+- Branded Brevo emails and internal business messages are handled by forms-api.
+- Successful submissions are additionally archived in Netlify Forms as a best-effort step.
+- Visible error messages are shown if the API fails; users are no longer redirected on silent failure.
+
+Required Netlify environment variables
+- BREVO_API_KEY
+- BREVO_LIST_ID
+
+Optional
+- BREVO_PARTNERS_LIST_ID=5
+- BREVO_SENDER_EMAIL=hello@the-seventh-table.com
+- BREVO_SENDER_NAME=The Seventh Table
+
+After deployment
+1. Remove the old HTTP POST notification under Netlify form notifications. It is no longer used.
+2. Keep or remove the simple Netlify email notification according to preference. It is independent of the branded Brevo emails.
+3. Test Guest and Partner once.
+4. Inspect Logs & metrics → Functions → forms-api if needed.

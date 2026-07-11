@@ -592,38 +592,8 @@ if ('IntersectionObserver' in window && sections.length) {
   requestAnimationFrame(render);
 })();
 
-// V10 — Guest List UX: timestamp, validation feedback and loading state.
-(() => {
-  const form = document.getElementById('guestListForm');
-  if (!form) return;
-
-  const button = form.querySelector('button[type="submit"]');
-  const email = form.querySelector('input[type="email"]');
-  const consent = form.querySelector('input[name="marketing-consent"]');
-  const timestamp = document.getElementById('submittedAt');
-  const status = document.getElementById('signupStatus');
-
-  const resetMessage = () => { if (status) status.textContent = ''; };
-  email?.addEventListener('input', resetMessage);
-  consent?.addEventListener('change', resetMessage);
-
-  form.addEventListener('submit', (event) => {
-    if (!form.checkValidity()) {
-      event.preventDefault();
-      form.reportValidity();
-      if (status) status.textContent = 'Please enter a valid email address and confirm your consent.';
-      return;
-    }
-
-    if (timestamp) timestamp.value = new Date().toISOString();
-    if (button) {
-      button.disabled = true;
-      button.setAttribute('aria-busy', 'true');
-      button.textContent = button.dataset.loadingLabel || 'Reserving your seat…';
-    }
-    if (status) status.textContent = 'Preparing your reservation…';
-  });
-})();
+// V16 — form submission is handled centrally by forms-direct.js.
+// This file retains all visual and interaction logic only.
 
 // V11 — Next-service countdown and refined page transitions.
 (() => {
