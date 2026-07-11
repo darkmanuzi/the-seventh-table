@@ -1,0 +1,8 @@
+THE SEVENTH TABLE — V15 THE HOUSE
+
+Deploy through GitHub:
+git add .
+git commit -m "V15 - The House"
+git push
+
+Netlify publishes automatically from main.
