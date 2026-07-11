@@ -29,16 +29,19 @@ async function brevoRequest({ apiKey, path, method = 'POST', body }) {
   });
   const text = await res.text();
   if (!res.ok) console.error('[Brevo] request failed', { path, status: res.status, body: text });
-  return { ok: res.ok, status: res.status, text };
+  let json = null;
+  try { json = text ? JSON.parse(text) : null; } catch {}
+  return { ok: res.ok, status: res.status, text, json, messageId: json?.messageId || json?.messageIds?.[0] || '' };
 }
 
-async function sendEmail({ apiKey, senderName, senderEmail, to, subject, htmlContent, textContent, replyTo }) {
+async function sendEmail({ apiKey, senderName, senderEmail, to, subject, htmlContent, textContent, replyTo, tags = [] }) {
   const body = {
     sender: { name: senderName, email: senderEmail },
     to: [{ email: to }],
     subject,
     htmlContent,
     textContent,
+    ...(tags.length ? { tags } : {}),
   };
   if (replyTo) body.replyTo = { email: replyTo };
   return brevoRequest({ apiKey, path: '/smtp/email', body });
@@ -84,9 +87,10 @@ async function guestWorkflow({ data, email, apiKey, senderName, senderEmail }) {
 
   const mail = await sendEmail({
     apiKey, senderName, senderEmail, to: email,
-    subject: 'Welcome to The Seventh Table',
+    subject: 'Your seat is reserved — The Seventh Table',
     htmlContent: frame('The Guest List', 'Your seat is reserved.', 'Welcome to The Seventh Table. You will receive selected invitations whenever a new Reservation is served.', 'Explore the Reservations', 'https://the-seventh-table.com/#reservations'),
     textContent: 'Welcome to The Seventh Table. Your seat is reserved. You will receive selected invitations whenever a new Reservation is served.',
+    tags: ['guest-list-confirmation'],
   });
   if (!mail.ok) throw new Error(`Brevo welcome email failed (${mail.status})`);
 
@@ -96,13 +100,13 @@ async function guestWorkflow({ data, email, apiKey, senderName, senderEmail }) {
     listId: Number(env('BREVO_LIST_ID')),
     // Avoid custom attributes here: unknown Brevo attributes can reject the contact.
   });
-  console.log('[forms-api] Guest completed', { email, emailStatus: mail.status, contactStatus: contact.status });
+  console.log('[forms-api] Guest completed', { email, emailStatus: mail.status, emailMessageId: mail.messageId, contactStatus: contact.status });
 }
 
 async function businessWorkflow({ formName, data, email, apiKey, senderName, senderEmail }) {
   const config = {
     'partner-inquiry': {
-      subject: 'Thank you for your interest in The Seventh Table', kicker: 'Partnerships', title: 'Your request has been received.',
+      subject: 'Partnership request received — The Seventh Table', kicker: 'Partnerships', title: 'Your request has been received.',
       copy: 'Thank you for reaching out to The Seventh Table. We are delighted by your interest in becoming part of our journey. Your message will be reviewed personally. We carefully select partnerships that reflect quality, authenticity and lasting value. If there is a mutual fit, we will contact you shortly.',
       inbox: 'partners@the-seventh-table.com', listId: Number(env('BREVO_PARTNERS_LIST_ID') || '5'),
     },
@@ -130,6 +134,7 @@ async function businessWorkflow({ formName, data, email, apiKey, senderName, sen
     htmlContent: frame(config.kicker, config.title, greeting),
     textContent: `${name ? `Dear ${name},\n\n` : ''}${config.copy}`,
     replyTo: config.inbox,
+    tags: [`${formName}-confirmation`],
   });
   if (!confirmation.ok) throw new Error(`Brevo confirmation email failed (${confirmation.status})`);
 
@@ -139,6 +144,7 @@ async function businessWorkflow({ formName, data, email, apiKey, senderName, sen
     htmlContent: `<!doctype html><html><body style="margin:0;background:#090909;color:#f3f0e8;font-family:Arial,Helvetica,sans-serif"><div style="max-width:720px;margin:0 auto;padding:32px"><div style="color:#c7a86d;font-family:Georgia,serif;font-size:44px;text-align:center">VII</div><h1 style="font-family:Georgia,serif;font-weight:400">New ${config.kicker} enquiry</h1><p style="color:#b8b0a3">Reply directly to this email to answer ${escapeHtml(email)}.</p><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #4a3d27;border-collapse:collapse">${detailsTable(data)}</table></div></body></html>`,
     textContent: Object.entries(data).filter(([key]) => !['formName','form-name','bot-field'].includes(key)).map(([key,value]) => `${key}: ${value}`).join('\n'),
     replyTo: email,
+    tags: [`${formName}-internal`],
   });
   if (!internal.ok) throw new Error(`Brevo internal email failed (${internal.status})`);
 
@@ -146,7 +152,7 @@ async function businessWorkflow({ formName, data, email, apiKey, senderName, sen
     const contact = await upsertContact({ apiKey, email, listId: config.listId });
     console.log('[forms-api] Partner CRM result', { email, status: contact.status });
   }
-  console.log('[forms-api] Business completed', { formName, email, confirmationStatus: confirmation.status, internalStatus: internal.status });
+  console.log('[forms-api] Business completed', { formName, email, confirmationStatus: confirmation.status, confirmationMessageId: confirmation.messageId, internalStatus: internal.status, internalMessageId: internal.messageId });
 }
 
 export async function handler(event) {

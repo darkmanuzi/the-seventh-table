@@ -2,8 +2,9 @@
  * V16 — Direct, reliable form delivery.
  *
  * Every website form calls the deployed Netlify Function directly.
- * After a successful Brevo workflow, the submission is also stored in
- * Netlify Forms as a best-effort archive. No form webhook is required.
+ * The website calls the Netlify Function directly. No Netlify form
+ * notification, webhook, or secondary archive submission is used.
+ * This prevents duplicate “table” notification emails.
  */
 (() => {
   const endpoint = '/.netlify/functions/forms-api';
@@ -45,21 +46,6 @@
     status.classList.toggle('is-error', Boolean(error));
   };
 
-  const archiveInNetlifyForms = async (form, payload) => {
-    // Keep Netlify's submission archive, but never let an archive failure
-    // block the branded Brevo confirmation.
-    const archivePayload = { ...payload };
-    delete archivePayload.formName;
-    try {
-      await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode(archivePayload),
-      });
-    } catch (error) {
-      console.warn('[forms] Netlify archive failed', error);
-    }
-  };
 
   const submit = async (event) => {
     const form = event.currentTarget;
@@ -101,7 +87,6 @@
         throw new Error(result.message || `Request failed (${response.status})`);
       }
 
-      await archiveInNetlifyForms(form, payload);
       window.location.assign(form.action || (payload.formName === 'guest-list' ? '/thank-you.html' : '/inquiry-received.html'));
     } catch (error) {
       console.error('[forms] Submission failed', error);

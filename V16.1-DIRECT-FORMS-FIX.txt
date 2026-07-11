@@ -1,0 +1,15 @@
+THE SEVENTH TABLE — V16.1 DIRECT FORMS FIX
+
+Changes:
+- Loads forms-direct.js on the home page, so Guest List uses the direct Brevo workflow.
+- Removes the secondary Netlify Forms archive POST to stop duplicate short/table emails.
+- Keeps the branded internal business enquiry email.
+- Adds distinctive transactional subjects and Brevo tags.
+- Logs Brevo message IDs for Guest and Partner confirmations.
+
+No HTTP POST notification is required in Netlify.
+Existing environment variables remain:
+- BREVO_API_KEY
+- BREVO_LIST_ID
+Optional:
+- BREVO_PARTNERS_LIST_ID=5
