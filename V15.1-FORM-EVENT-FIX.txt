@@ -1,0 +1,20 @@
+THE SEVENTH TABLE — V15.1 FORM EVENT FIX
+
+Changed files:
+- netlify/functions/submission-created.mjs
+- CHANGELOG.md
+
+Purpose:
+- Use Netlify's current formSubmitted event handler.
+- Restore branded Guest List, Partner, Press and Licensing emails.
+- Add useful logs in Netlify Functions.
+
+No new environment variable is required.
+Required existing variables:
+- BREVO_API_KEY
+- BREVO_LIST_ID
+
+Optional:
+- BREVO_PARTNERS_LIST_ID (defaults to 5)
+- BREVO_SENDER_EMAIL (defaults to hello@the-seventh-table.com)
+- BREVO_SENDER_NAME (defaults to The Seventh Table)
