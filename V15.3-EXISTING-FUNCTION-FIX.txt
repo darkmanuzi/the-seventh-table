@@ -1,0 +1,20 @@
+THE SEVENTH TABLE — V15.3 EXISTING FUNCTION FIX
+
+This patch uses the already deployed Netlify Function name:
+  submission-created
+
+After deployment, edit the existing Netlify HTTP POST notification URL to:
+  https://the-seventh-table.com/.netlify/functions/submission-created
+
+Keep:
+  Event: New form submission
+  Form: Any form
+
+Do not create a second webhook notification.
+
+Required Netlify environment variables:
+  BREVO_API_KEY
+  BREVO_LIST_ID
+
+Optional:
+  BREVO_PARTNERS_LIST_ID=5
