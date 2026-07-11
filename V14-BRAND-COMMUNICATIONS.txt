@@ -1,0 +1,32 @@
+THE SEVENTH TABLE — V14 BRAND COMMUNICATIONS
+
+NEW
+- Branded partnership request page: /partner.html
+- Branded press request page: /press.html
+- Licensing page now includes a structured licensing form
+- Automatic branded acknowledgement emails through Brevo
+- Shared confirmation page: /inquiry-received.html
+- Direct email aliases remain valid and unchanged
+
+AUTOMATIC EMAILS
+- partner-inquiry → partnership acknowledgement
+- press-inquiry → press acknowledgement
+- licensing-inquiry → licensing acknowledgement
+- guest-list → existing welcome email
+
+NETLIFY
+The existing variables are sufficient:
+BREVO_API_KEY
+BREVO_LIST_ID
+
+Optional existing sender overrides:
+BREVO_SENDER_EMAIL
+BREVO_SENDER_NAME
+
+IMPORTANT
+These automatic acknowledgements trigger when visitors use the website forms.
+Messages sent directly to partners@, press@ or licensing@ are delivered to the STRATO mailbox but are not automatically answered by this website function. For direct-email autoresponders, configure a STRATO vacation/autoreply rule separately.
+
+DEPLOY
+Open Terminal in this extracted folder and run:
+netlify deploy --prod

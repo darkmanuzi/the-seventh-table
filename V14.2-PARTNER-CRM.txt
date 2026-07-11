@@ -1,0 +1,16 @@
+THE SEVENTH TABLE — V14.2 PARTNER CRM
+
+Changes:
+- Partner form entries are automatically added to Brevo list #5: The Seventh Table – Partners.
+- Partner contacts remain separate from the Guest List (#4).
+- The submitting company receives a personalised branded acknowledgement.
+- The internal enquiry still arrives at partners@the-seventh-table.com.
+- Reply-To points to the submitting partner.
+
+Optional Netlify environment variable:
+BREVO_PARTNERS_LIST_ID=5
+
+The code defaults to list 5, so the variable is optional.
+
+Deploy from this exact folder:
+netlify deploy --prod

@@ -1,0 +1,29 @@
+THE SEVENTH TABLE — V13 SOCIAL LAUNCH EDITION
+
+WHAT IS AUTOMATIC NOW
+- Daily Netlify scheduled function prepares one elegant evergreen post.
+- The post is sent to a webhook at 10:00 UTC each day.
+- UTM tracking is included in every campaign link.
+- Visitors can share the website through native sharing, X, Facebook and LinkedIn.
+- An RSS feed is available at /feed.xml.
+
+IMPORTANT
+The website cannot publish directly to Instagram, TikTok, Facebook or LinkedIn without each platform's permission/API connection. The safe and practical route is:
+Netlify scheduled function -> Make/Zapier/Buffer/Metricool webhook -> connected social accounts.
+
+NETLIFY ENVIRONMENT VARIABLE
+SOCIAL_WEBHOOK_URL = webhook URL from Make, Zapier, Buffer or another approved scheduler.
+Optional:
+SOCIAL_WEBHOOK_SECRET = your own random secret, if the receiving workflow checks it.
+
+DEPLOY
+1. Extract this folder.
+2. Open Terminal in the folder.
+3. Run: netlify deploy --prod
+
+NO SOCIAL WEBHOOK YET?
+No problem. The website and Guest List continue working normally. The scheduled function simply logs “Not configured” until SOCIAL_WEBHOOK_URL is added.
+
+CONTENT
+The seven rotating posts are stored in social-campaigns.json and mirrored in netlify/functions/social-campaign.mjs.
+Edit the wording there before deploying when you want a new weekly campaign.

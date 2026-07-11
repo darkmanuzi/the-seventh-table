@@ -1,0 +1,14 @@
+THE SEVENTH TABLE — V14.1 FIX
+
+Fixed:
+- Removed the duplicate Lounge navigation item.
+- Partner, press and licensing forms now send two emails automatically:
+  1. a branded acknowledgement to the visitor;
+  2. the complete enquiry to the appropriate alias (partners@, press@, licensing@).
+- Replying to the internal notification replies directly to the sender.
+
+Deployment:
+1. Open Terminal in this exact folder.
+2. Run: netlify deploy --prod
+3. Test partner.html with a fresh email address.
+4. Check both the submitting address and partners@ / hello@ inbox.

@@ -1,0 +1,51 @@
+THE SEVENTH TABLE — BREVO / NETLIFY SETUP
+
+1. IN BREVO
+Create the list:
+  The Seventh Table – Guest List
+
+Open the list and note its numeric List ID.
+Create an API key under SMTP & API → API keys.
+Treat this key like a password. Never place it in HTML or JavaScript.
+
+2. IN NETLIFY
+Project configuration → Environment variables → Add variable
+
+Required:
+  BREVO_API_KEY       = your Brevo API key
+  BREVO_LIST_ID       = numeric Brevo list ID, for example 12
+
+Optional for Double Opt-in:
+  BREVO_DOI_TEMPLATE_ID = numeric Brevo confirmation-template ID
+  BREVO_DOI_REDIRECT_URL = https://the-seventh-table.com/confirmed.html
+
+After adding or changing environment variables, trigger a new deploy.
+
+3. AUTOMATION IN BREVO
+Recommended workflow:
+  Trigger: Contact added to “The Seventh Table – Guest List”
+  Action: Send “Welcome to The Seventh Table” email
+
+When Double Opt-in is enabled, the contact is added to the list only after
+clicking the confirmation link, so the welcome automation runs afterwards.
+
+4. CONTACT ATTRIBUTES
+The function sends these optional attributes:
+  SOURCE
+  CONSENT
+  CONSENT_DATE
+
+If Brevo ignores unknown attributes, create them in Settings → Contacts →
+Contact attributes using exactly those names. The contact itself will still
+be created even if you choose not to use these attributes.
+
+5. TEST
+- Submit a new email through the website.
+- Check Netlify → Forms.
+- Check Brevo → Contacts → The Seventh Table – Guest List.
+- If Double Opt-in is enabled, confirm the email first.
+- Check Netlify Function logs if the contact does not appear.
+
+SECURITY
+The Brevo API key belongs only in Netlify environment variables.
+Do not send screenshots showing API keys, SMTP passwords or secret tokens.

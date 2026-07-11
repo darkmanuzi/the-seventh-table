@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Partnerships — The Seventh Table</title>
+  <meta name="description" content="Partnership enquiries for selected hospitality, luxury and cultural collaborations with The Seventh Table.">
+  <link rel="stylesheet" href="styles.css"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body class="legal-body">
+<div class="noise" aria-hidden="true"></div>
+<header class="site-header"><a class="brand" href="index.html">THE SEVENTH TABLE</a><nav><a href="index.html#reservations">Reservations</a><a href="licensing.html">Licensing</a><a href="press.html">Press</a></nav></header>
+<section class="legal-hero partner-hero"><div class="inner"><p>Selected collaborations</p><h1>Partnerships</h1></div></section>
+<main class="legal-main inquiry-main">
+  <div class="inquiry-intro"><div><div class="section-kicker">Request an Invitation</div><h2>Let us create something memorable.</h2></div><p>We welcome thoughtful enquiries from restaurants, hotels, wine houses, premium venues and brands that share our appreciation for atmosphere, quality and lasting experiences.</p></div>
+  <form name="partner-inquiry" method="POST" action="/inquiry-received.html" data-netlify="true" netlify-honeypot="bot-field" class="inquiry-form">
+    <input type="hidden" name="form-name" value="partner-inquiry"><p class="sr-only"><label>Do not fill this out <input name="bot-field"></label></p>
+    <div class="form-grid"><label>Name<input name="name" autocomplete="name" required></label><label>Company / Venue<input name="company" autocomplete="organization" required></label><label>Email<input name="email" type="email" autocomplete="email" required></label><label>Website<input name="website" type="url" placeholder="https://"></label><label>Location<input name="location"></label><label>Partnership type<select name="partnership-type" required><option value="">Select</option><option>Hospitality</option><option>Brand collaboration</option><option>Sponsorship</option><option>Event</option><option>Other</option></select></label></div>
+    <label>Tell us about your idea<textarea name="message" rows="7" required></textarea></label>
+    <label class="consent-line"><input type="checkbox" name="privacy-consent" value="yes" required><span>I agree that my information may be used to review and respond to this enquiry.</span></label>
+    <button type="submit" class="button primary">Send Partnership Request</button>
+  </form>
+</main>
+<footer><p class="footer-brand">THE SEVENTH TABLE</p><div class="footer-links"><a href="index.html">The House</a><a href="licensing.html">Licensing</a><a href="legal.html">Imprint</a><a href="privacy.html">Privacy</a></div><p class="until">Until the next reservation...</p></footer>
+</body></html>

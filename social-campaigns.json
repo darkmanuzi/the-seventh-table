@@ -1,0 +1,14 @@
+{
+  "brand": "The Seventh Table",
+  "timezone": "Europe/Berlin",
+  "campaign": "evergreen-launch",
+  "posts": {
+    "0": {"theme":"Sunday atmosphere","text":"Dim the lights. Pour a glass. Your table is ready. Discover The Seventh Table.","url":"https://the-seventh-table.com/?utm_source=automation&utm_medium=social&utm_campaign=evergreen&utm_content=sunday"},
+    "1": {"theme":"Monday destination","text":"Every Reservation is a destination. Where will your table take you next?","url":"https://the-seventh-table.com/#reservations?utm_source=automation&utm_medium=social&utm_campaign=evergreen&utm_content=monday"},
+    "2": {"theme":"Tuesday story","text":"Music should not dominate a room. It should define its soul.","url":"https://the-seventh-table.com/#journey?utm_source=automation&utm_medium=social&utm_campaign=evergreen&utm_content=tuesday"},
+    "3": {"theme":"Wednesday guest list","text":"A private invitation awaits. Reserve your seat at The Seventh Table.","url":"https://the-seventh-table.com/#guest-list?utm_source=automation&utm_medium=social&utm_campaign=evergreen&utm_content=wednesday"},
+    "4": {"theme":"Thursday hospitality","text":"Created for restaurants, hotels, lounges and unforgettable evenings.","url":"https://the-seventh-table.com/licensing.html?utm_source=automation&utm_medium=social&utm_campaign=evergreen&utm_content=thursday"},
+    "5": {"theme":"Friday evening","text":"Friday evening has a soundtrack. Welcome to The Seventh Table.","url":"https://the-seventh-table.com/?utm_source=automation&utm_medium=social&utm_campaign=evergreen&utm_content=friday"},
+    "6": {"theme":"Saturday invitation","text":"Tonight, take a seat somewhere unforgettable.","url":"https://the-seventh-table.com/#reservations?utm_source=automation&utm_medium=social&utm_campaign=evergreen&utm_content=saturday"}
+  }
+}
