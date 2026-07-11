@@ -1,0 +1,27 @@
+# V16.2 — Direct Forms Listener Fix
+
+This patch replaces `forms-direct.js` with a delegated submit listener.
+
+Why:
+- the previous script attached listeners only to forms present at script load time;
+- if a form was not yet present, the browser submitted it natively to Netlify;
+- that produced only the short Netlify data email.
+
+After this patch:
+- Guest List shows `Reserving your seat…`
+- Business forms show `Sending your request…`
+- the browser calls `/.netlify/functions/forms-api`
+- Brevo handles the branded confirmation mail
+
+Install with:
+
+rsync -av \
+/Users/huskicimmobilien/Downloads/the-seventh-table-v16.2/ \
+/Users/huskicimmobilien/Downloads/the-seventh-table-v14.2-partner-crm/
+
+Then:
+
+cd /Users/huskicimmobilien/Downloads/the-seventh-table-v14.2-partner-crm
+git add forms-direct.js V16.2-DIRECT-FORMS-FIX.txt
+git commit -m "V16.2 - Fix delegated form submissions"
+git push
