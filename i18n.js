@@ -190,14 +190,15 @@
     const header=document.querySelector('.site-header');
     if (header && !header.querySelector('.language-switcher')) {
       const sw = document.createElement('div');
-      sw.className = 'language-switcher';
+      sw.className = 'language-switcher notranslate';
+      sw.setAttribute('translate', 'no');
       sw.innerHTML = `
-        <button type="button" data-language-current aria-label="Change language" aria-expanded="false">EN</button>
+        <button type="button" data-language-current aria-label="Change language" aria-expanded="false" translate="no" class="notranslate">EN</button>
         <div class="language-menu" role="menu">
-          <button type="button" data-lang-choice="de" role="menuitem">DE</button>
-          <button type="button" data-lang-choice="en" role="menuitem">EN</button>
-          <button type="button" data-lang-choice="fr" role="menuitem">FR</button>
-          <button type="button" data-lang-choice="es" role="menuitem">ES</button>
+          <button type="button" data-lang-choice="de" role="menuitem" translate="no" class="notranslate">DE</button>
+          <button type="button" data-lang-choice="en" role="menuitem" translate="no" class="notranslate">EN</button>
+          <button type="button" data-lang-choice="fr" role="menuitem" translate="no" class="notranslate">FR</button>
+          <button type="button" data-lang-choice="es" role="menuitem" translate="no" class="notranslate">ES</button>
         </div>`;
       header.appendChild(sw);
 

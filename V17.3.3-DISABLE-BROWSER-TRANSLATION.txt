@@ -1,0 +1,12 @@
+V17.3.3 — Disable Browser Auto-Translation
+
+Cause fixed:
+Chrome/Google auto-translation was translating the brand name and language abbreviations:
+- THE SEVENTH TABLE -> Der siebte Tisch
+- FR / EN / ES -> VON / IN / IST
+
+Changes:
+- Added Google notranslate metadata to all pages.
+- Added translate="no" and notranslate to the document.
+- Protected DE / EN / FR / ES controls from browser translation.
+- The website now uses only its own controlled DE / EN / FR / ES translations.
