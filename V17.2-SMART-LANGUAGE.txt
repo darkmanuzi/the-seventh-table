@@ -1,0 +1,12 @@
+V17.2 — Smart Language Detection
+
+- First visit automatically uses the browser language:
+  de -> Deutsch
+  fr -> Français
+  es -> Español
+  all other languages -> English
+- The welcome screen stays minimal: logo, welcome text and localized Enter button.
+- The large language list is removed from the entrance.
+- The discreet DE / EN / FR / ES switcher remains available in the header.
+- A manually selected language is remembered for future visits.
+- Partner Lounge, forms and partner confirmation emails continue using the selected language.

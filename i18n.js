@@ -168,12 +168,11 @@
   }
 
   function buildControls() {
-    const welcome=document.querySelector('.welcome-card');
-    if (welcome && !welcome.querySelector('.language-choices')) {
-      const choices=document.createElement('div'); choices.className='language-choices';
-      choices.innerHTML='<button type="button" data-lang-choice="de">DEUTSCH</button><button type="button" data-lang-choice="en">ENGLISH</button><button type="button" data-lang-choice="fr">FRANÇAIS</button><button type="button" data-lang-choice="es">ESPAÑOL</button>';
-      const enter=welcome.querySelector('#enterSite'); welcome.insertBefore(choices,enter);
-    }
+    // V17.2: no language-selection block on the luxury entrance.
+    // The first visit follows the browser language automatically.
+    // A deliberate user selection is preserved in localStorage.
+    document.querySelectorAll('.language-choices').forEach((element) => element.remove());
+
     const header=document.querySelector('.site-header');
     if (header && !header.querySelector('.language-switcher')) {
       const sw=document.createElement('div'); sw.className='language-switcher';
