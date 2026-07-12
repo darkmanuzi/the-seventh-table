@@ -1,0 +1,6 @@
+V17.3.1 — Brand Protection Fix
+
+Fixes a JavaScript error that stopped all translations:
+- BRAND_TERMS is now defined before use.
+- Protected brand names are returned unchanged instead of returning an undefined value.
+- DE / EN / FR / ES translation works again.

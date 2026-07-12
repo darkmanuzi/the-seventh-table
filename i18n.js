@@ -1,4 +1,17 @@
 (() => {
+  // V17.3.1 — Brand names are never translated.
+  const BRAND_TERMS = new Set([
+    'THE SEVENTH TABLE', 'The Seventh Table',
+    'THE HOUSE', 'The House',
+    'THE JOURNEY', 'The Journey',
+    'RESERVATIONS', 'Reservations',
+    'GRAND FOUNDING PARTNERS', 'Grand Founding Partners',
+    'HUMANITY WINS', 'Humanity Wins',
+    'IMAGINE PEACE', 'Imagine Peace',
+    'AEONYX', 'UZIRO',
+    'THE RONIN GUN CLUB', 'The Ronin Gun Club'
+  ]);
+
   const supported = ['de','en','fr','es'];
   const labels = {de:'DE',en:'EN',fr:'FR',es:'ES'};
   const T = {
@@ -127,7 +140,7 @@
   function translateString(value, target) {
     const clean = value.trim();
     if (!clean || target === 'en') return value;
-    if (BRAND_TERMS.includes(clean)) return;
+    if (BRAND_TERMS.has(clean)) return value;
     const translated = T[target]?.[clean] || EXTRA[target]?.[clean];
     if (!translated) return value;
     const lead = value.match(/^\s*/)?.[0] || '';
@@ -176,14 +189,43 @@
 
     const header=document.querySelector('.site-header');
     if (header && !header.querySelector('.language-switcher')) {
-      const sw=document.createElement('div'); sw.className='language-switcher';
-      sw.innerHTML='<button type="button" data-language-current aria-label="Change language">EN</button><div class="language-menu"><button data-lang-choice="de">DE</button><button data-lang-choice="en">EN</button><button data-lang-choice="fr">FR</button><button data-lang-choice="es">ES</button></div>';
+      const sw = document.createElement('div');
+      sw.className = 'language-switcher';
+      sw.innerHTML = `
+        <button type="button" data-language-current aria-label="Change language" aria-expanded="false">EN</button>
+        <div class="language-menu" role="menu">
+          <button type="button" data-lang-choice="de" role="menuitem">DE</button>
+          <button type="button" data-lang-choice="en" role="menuitem">EN</button>
+          <button type="button" data-lang-choice="fr" role="menuitem">FR</button>
+          <button type="button" data-lang-choice="es" role="menuitem">ES</button>
+        </div>`;
       header.appendChild(sw);
+
+      const current = sw.querySelector('[data-language-current]');
+      current.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const open = sw.classList.toggle('is-open');
+        current.setAttribute('aria-expanded', String(open));
+      });
+
+      sw.querySelectorAll('[data-lang-choice]').forEach((button) => {
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          setLanguage(button.dataset.langChoice);
+          sw.classList.remove('is-open');
+          current.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!sw.contains(event.target)) {
+          sw.classList.remove('is-open');
+          current.setAttribute('aria-expanded', 'false');
+        }
+      });
     }
-    document.addEventListener('click',e=>{
-      const btn=e.target.closest('[data-lang-choice]'); if(btn) setLanguage(btn.dataset.langChoice);
-      const current=e.target.closest('[data-language-current]'); if(current) current.closest('.language-switcher')?.classList.toggle('is-open');
-    });
   }
 
   document.addEventListener('DOMContentLoaded',()=>{

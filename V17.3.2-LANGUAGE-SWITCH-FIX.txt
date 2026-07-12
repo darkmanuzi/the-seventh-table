@@ -1,0 +1,7 @@
+V17.3.2 — Manual Language Switch Fix
+
+- The DE / EN / FR / ES selector now uses direct button listeners.
+- All language buttons explicitly use type="button".
+- Menu opens and closes reliably.
+- Selecting a language immediately updates the page and stores the choice.
+- Brand protection remains active.
