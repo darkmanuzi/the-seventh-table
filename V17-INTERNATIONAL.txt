@@ -1,0 +1,13 @@
+V17 INTERNATIONAL
+
+Base: V15 The House
+Applied patches: V15.3, V16, V16.1, V16.2
+
+Added:
+- German, English, French and Spanish language selection on the welcome screen
+- Browser-language detection and saved language preference
+- Persistent compact language switcher in the header
+- Dynamic translation layer for the homepage and shared page elements
+- Existing delegated forms and Brevo/Netlify functions preserved
+
+Deploy the complete folder, not an individual patch.

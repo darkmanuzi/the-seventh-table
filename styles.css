@@ -562,3 +562,8 @@ body{padding-top:34px}
 .contact-strip strong{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
 .contact-strip span{color:var(--ivory);font-size:14px}
 @media(max-width:850px){.house-doors,.house-gateway,.media-grid,.contact-strip{grid-template-columns:1fr}.gateway-card{min-height:360px;padding:60px 24px}}
+
+/* V17 International language controls */
+.language-choices{display:grid;grid-template-columns:repeat(2,minmax(110px,1fr));gap:10px;margin:24px 0 18px}.language-choices button,.language-switcher button{border:1px solid rgba(201,163,90,.38);background:transparent;color:#d8c39a;font:inherit;letter-spacing:.14em;cursor:pointer}.language-choices button{padding:11px 14px;font-size:11px}.language-choices button:hover,.language-choices button.is-active,.language-switcher button:hover,.language-switcher button.is-active{border-color:#c9a35a;color:#fff;background:rgba(201,163,90,.1)}
+.language-switcher{position:relative;margin-left:auto;z-index:30}.language-switcher>[data-language-current]{width:42px;height:34px;font-size:10px}.language-menu{position:absolute;right:0;top:42px;display:none;padding:7px;background:#0b0b0b;border:1px solid rgba(201,163,90,.3);box-shadow:0 14px 40px rgba(0,0,0,.5)}.language-switcher.is-open .language-menu{display:grid;grid-template-columns:repeat(2,36px);gap:6px}.language-menu button{height:30px;font-size:9px}.site-header nav{margin-left:auto}.site-header .language-switcher{margin-left:18px}
+@media(max-width:900px){.site-header .language-switcher{margin-left:8px}.language-choices{grid-template-columns:1fr 1fr}}
