@@ -127,6 +127,7 @@
   function translateString(value, target) {
     const clean = value.trim();
     if (!clean || target === 'en') return value;
+    if (BRAND_TERMS.includes(clean)) return;
     const translated = T[target]?.[clean] || EXTRA[target]?.[clean];
     if (!translated) return value;
     const lead = value.match(/^\s*/)?.[0] || '';
