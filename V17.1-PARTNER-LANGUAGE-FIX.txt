@@ -1,0 +1,6 @@
+V17.1 — Partner Language Fix
+
+- Partner Lounge standalone page now follows the selected DE/EN/FR/ES language.
+- Partner form sends the selected language to the Netlify function.
+- Partner confirmation email is sent in the visitor's selected language.
+- Internal partners@ notification remains operational and includes the submitted language.

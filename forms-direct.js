@@ -24,6 +24,10 @@
     object['submitted-at'] =
       object['submitted-at'] ||
       new Date().toISOString();
+    object.language =
+      object.language ||
+      localStorage.getItem('tst-language') ||
+      ((navigator.language || 'en').slice(0, 2));
     return object;
   };
 

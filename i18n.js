@@ -39,6 +39,85 @@
     }
   };
 
+
+  const EXTRA = {
+    de: {
+      'Partnerships':'Partnerschaften',
+      'Selected collaborations':'Ausgewählte Kooperationen',
+      'Request an Invitation':'Einladung anfragen',
+      'Let us create something memorable.':'Lassen Sie uns etwas Bleibendes schaffen.',
+      'We welcome thoughtful enquiries from restaurants, hotels, wine houses, premium venues and brands that share our appreciation for atmosphere, quality and lasting experiences.':'Wir freuen uns über sorgfältig formulierte Anfragen von Restaurants, Hotels, Weinhäusern, Premium-Locations und Marken, die unsere Wertschätzung für Atmosphäre, Qualität und bleibende Erlebnisse teilen.',
+      'Name':'Name',
+      'Company / Venue':'Unternehmen / Location',
+      'Email':'E-Mail',
+      'Website':'Website',
+      'Location':'Ort',
+      'Partnership type':'Art der Partnerschaft',
+      'Select':'Bitte wählen',
+      'Hospitality':'Hospitality',
+      'Brand collaboration':'Markenkooperation',
+      'Sponsorship':'Sponsoring',
+      'Event':'Veranstaltung',
+      'Other':'Sonstiges',
+      'Tell us about your idea':'Erzählen Sie uns von Ihrer Idee',
+      'I agree that my information may be used to review and respond to this enquiry.':'Ich stimme zu, dass meine Angaben zur Prüfung und Beantwortung dieser Anfrage verwendet werden dürfen.',
+      'Send Partnership Request':'Partnerschaftsanfrage senden',
+      'Licensing':'Lizenzierung',
+      'Press':'Presse',
+      'Imprint':'Impressum'
+    },
+    fr: {
+      'Partnerships':'Partenariats',
+      'Selected collaborations':'Collaborations sélectionnées',
+      'Request an Invitation':'Demander une invitation',
+      'Let us create something memorable.':'Créons ensemble quelque chose d’inoubliable.',
+      'We welcome thoughtful enquiries from restaurants, hotels, wine houses, premium venues and brands that share our appreciation for atmosphere, quality and lasting experiences.':'Nous accueillons les demandes réfléchies de restaurants, hôtels, maisons de vin, lieux d’exception et marques qui partagent notre goût pour l’atmosphère, la qualité et les expériences durables.',
+      'Name':'Nom',
+      'Company / Venue':'Entreprise / Établissement',
+      'Email':'E-mail',
+      'Website':'Site web',
+      'Location':'Lieu',
+      'Partnership type':'Type de partenariat',
+      'Select':'Sélectionner',
+      'Hospitality':'Hospitalité',
+      'Brand collaboration':'Collaboration de marque',
+      'Sponsorship':'Parrainage',
+      'Event':'Événement',
+      'Other':'Autre',
+      'Tell us about your idea':'Parlez-nous de votre idée',
+      'I agree that my information may be used to review and respond to this enquiry.':'J’accepte que mes informations soient utilisées pour étudier cette demande et y répondre.',
+      'Send Partnership Request':'Envoyer la demande de partenariat',
+      'Licensing':'Licences',
+      'Press':'Presse',
+      'Imprint':'Mentions légales'
+    },
+    es: {
+      'Partnerships':'Colaboraciones',
+      'Selected collaborations':'Colaboraciones seleccionadas',
+      'Request an Invitation':'Solicitar una invitación',
+      'Let us create something memorable.':'Creemos juntos algo memorable.',
+      'We welcome thoughtful enquiries from restaurants, hotels, wine houses, premium venues and brands that share our appreciation for atmosphere, quality and lasting experiences.':'Recibimos con interés las consultas de restaurantes, hoteles, bodegas, espacios premium y marcas que comparten nuestro aprecio por la atmósfera, la calidad y las experiencias duraderas.',
+      'Name':'Nombre',
+      'Company / Venue':'Empresa / Espacio',
+      'Email':'Correo electrónico',
+      'Website':'Sitio web',
+      'Location':'Ubicación',
+      'Partnership type':'Tipo de colaboración',
+      'Select':'Seleccionar',
+      'Hospitality':'Hospitalidad',
+      'Brand collaboration':'Colaboración de marca',
+      'Sponsorship':'Patrocinio',
+      'Event':'Evento',
+      'Other':'Otro',
+      'Tell us about your idea':'Cuéntenos su idea',
+      'I agree that my information may be used to review and respond to this enquiry.':'Acepto que mis datos se utilicen para revisar y responder a esta consulta.',
+      'Send Partnership Request':'Enviar solicitud de colaboración',
+      'Licensing':'Licencias',
+      'Press':'Prensa',
+      'Imprint':'Aviso legal'
+    }
+  };
+
   const originalText = new WeakMap();
   const originalAttrs = new WeakMap();
   const textAttrs = ['placeholder','aria-label','title','data-default-label','data-loading-label'];
@@ -48,7 +127,7 @@
   function translateString(value, target) {
     const clean = value.trim();
     if (!clean || target === 'en') return value;
-    const translated = T[target]?.[clean];
+    const translated = T[target]?.[clean] || EXTRA[target]?.[clean];
     if (!translated) return value;
     const lead = value.match(/^\s*/)?.[0] || '';
     const trail = value.match(/\s*$/)?.[0] || '';

@@ -61,8 +61,8 @@ async function upsertContact({ apiKey, email, listId, attributes = {} }) {
   });
 }
 
-const frame = (kicker, title, copy, buttonLabel = 'Discover The Seventh Table', buttonUrl = 'https://the-seventh-table.com/') => `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+const frame = (kicker, title, copy, buttonLabel = 'Discover The Seventh Table', buttonUrl = 'https://the-seventh-table.com/', language = 'en', footer = 'Until the next reservation…') => `<!doctype html>
+<html lang="${language}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;background:#090909;color:#f3f0e8;font-family:Arial,Helvetica,sans-serif">
 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#090909;padding:30px 12px"><tr><td align="center">
 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px;background:#101010;border:1px solid #4a3d27">
@@ -71,9 +71,66 @@ const frame = (kicker, title, copy, buttonLabel = 'Discover The Seventh Table', 
 <tr><td align="center" style="padding:24px 34px 8px;color:#f3f0e8;font-family:Georgia,'Times New Roman',serif;font-size:42px;line-height:1.1">${title}</td></tr>
 <tr><td align="center" style="padding:18px 48px 8px;color:#b8b0a3;font-size:16px;line-height:1.8">${copy}</td></tr>
 <tr><td align="center" style="padding:28px 30px 24px"><a href="${buttonUrl}" style="display:inline-block;border:1px solid #c7a86d;color:#f3f0e8;text-decoration:none;padding:15px 24px;font-size:11px;letter-spacing:3px;text-transform:uppercase">${buttonLabel}</a></td></tr>
-<tr><td align="center" style="padding:10px 34px 42px;color:#82796a;font-family:Georgia,'Times New Roman',serif;font-size:18px">Until the next reservation…</td></tr>
+<tr><td align="center" style="padding:10px 34px 42px;color:#82796a;font-family:Georgia,'Times New Roman',serif;font-size:18px">${footer}</td></tr>
 <tr><td style="border-top:1px solid #2e281e;padding:24px 30px;color:#777067;font-size:11px;line-height:1.7;text-align:center">The Seventh Table · Luxury Dining Soundtracks</td></tr>
 </table></td></tr></table></body></html>`;
+
+
+const PARTNER_I18N = {
+  en: {
+    subject: 'Partnership request received — The Seventh Table',
+    kicker: 'Partnerships',
+    title: 'Your request has been received.',
+    copy: 'Thank you for reaching out to The Seventh Table. We are delighted by your interest in becoming part of our journey. Your message will be reviewed personally. We carefully select partnerships that reflect quality, authenticity and lasting value. If there is a mutual fit, we will contact you shortly.',
+    dearName: (name) => `Dear ${name},`,
+    dearPartner: 'Dear Partner,',
+    behalf: (company) => `Thank you for reaching out on behalf of <strong>${company}</strong>.`,
+    thanks: 'Thank you for reaching out.',
+    button: 'Discover The Seventh Table',
+    footer: 'Until the next reservation…'
+  },
+  de: {
+    subject: 'Ihre Partnerschaftsanfrage ist eingegangen — The Seventh Table',
+    kicker: 'Partnerschaften',
+    title: 'Ihre Anfrage ist eingegangen.',
+    copy: 'Vielen Dank für Ihr Interesse an The Seventh Table. Wir freuen uns, dass Sie Teil unserer Reise werden möchten. Ihre Nachricht wird persönlich geprüft. Wir wählen Partnerschaften sorgfältig nach Qualität, Authentizität und langfristigem Wert aus. Wenn eine gemeinsame Passung besteht, melden wir uns zeitnah bei Ihnen.',
+    dearName: (name) => `Sehr geehrte/r ${name},`,
+    dearPartner: 'Sehr geehrte Damen und Herren,',
+    behalf: (company) => `vielen Dank für Ihre Anfrage im Namen von <strong>${company}</strong>.`,
+    thanks: 'vielen Dank für Ihre Anfrage.',
+    button: 'The Seventh Table entdecken',
+    footer: 'Bis zur nächsten Reservation …'
+  },
+  fr: {
+    subject: 'Votre demande de partenariat a bien été reçue — The Seventh Table',
+    kicker: 'Partenariats',
+    title: 'Votre demande a bien été reçue.',
+    copy: 'Merci de votre intérêt pour The Seventh Table. Nous sommes heureux que vous souhaitiez prendre part à notre aventure. Votre message sera examiné personnellement. Nous sélectionnons avec soin les partenariats fondés sur la qualité, l’authenticité et la valeur à long terme. Si nos visions se rejoignent, nous vous contacterons prochainement.',
+    dearName: (name) => `Bonjour ${name},`,
+    dearPartner: 'Bonjour,',
+    behalf: (company) => `merci de nous avoir contactés au nom de <strong>${company}</strong>.`,
+    thanks: 'merci de nous avoir contactés.',
+    button: 'Découvrir The Seventh Table',
+    footer: 'Jusqu’à la prochaine Réservation…'
+  },
+  es: {
+    subject: 'Hemos recibido su solicitud de colaboración — The Seventh Table',
+    kicker: 'Colaboraciones',
+    title: 'Hemos recibido su solicitud.',
+    copy: 'Gracias por su interés en The Seventh Table. Nos alegra que desee formar parte de nuestro viaje. Su mensaje será revisado personalmente. Seleccionamos cuidadosamente colaboraciones que reflejen calidad, autenticidad y valor a largo plazo. Si existe afinidad mutua, nos pondremos en contacto con usted próximamente.',
+    dearName: (name) => `Estimado/a ${name},`,
+    dearPartner: 'Estimados señores:',
+    behalf: (company) => `gracias por ponerse en contacto con nosotros en nombre de <strong>${company}</strong>.`,
+    thanks: 'gracias por ponerse en contacto con nosotros.',
+    button: 'Descubrir The Seventh Table',
+    footer: 'Hasta la próxima Reserva…'
+  }
+};
+
+function normalizeLanguage(value) {
+  const language = clean(value).toLowerCase().slice(0, 2);
+  return ['de', 'en', 'fr', 'es'].includes(language) ? language : 'en';
+}
 
 function detailsTable(data) {
   return Object.entries(data)
@@ -104,10 +161,12 @@ async function guestWorkflow({ data, email, apiKey, senderName, senderEmail }) {
 }
 
 async function businessWorkflow({ formName, data, email, apiKey, senderName, senderEmail }) {
+  const language = normalizeLanguage(data.language);
+  const partnerText = PARTNER_I18N[language];
   const config = {
     'partner-inquiry': {
-      subject: 'Partnership request received — The Seventh Table', kicker: 'Partnerships', title: 'Your request has been received.',
-      copy: 'Thank you for reaching out to The Seventh Table. We are delighted by your interest in becoming part of our journey. Your message will be reviewed personally. We carefully select partnerships that reflect quality, authenticity and lasting value. If there is a mutual fit, we will contact you shortly.',
+      subject: partnerText.subject, kicker: partnerText.kicker, title: partnerText.title,
+      copy: partnerText.copy,
       inbox: 'partners@the-seventh-table.com', listId: Number(env('BREVO_PARTNERS_LIST_ID') || '5'),
     },
     'press-inquiry': {
@@ -126,13 +185,13 @@ async function businessWorkflow({ formName, data, email, apiKey, senderName, sen
   const name = clean(data.name);
   const company = clean(data.company);
   const greeting = formName === 'partner-inquiry'
-    ? `${name ? `Dear ${escapeHtml(name)},<br><br>` : 'Dear Partner,<br><br>'}Thank you for reaching out${company ? ` on behalf of <strong>${escapeHtml(company)}</strong>` : ''}.<br><br>${config.copy}`
+    ? `${name ? partnerText.dearName(escapeHtml(name)) : partnerText.dearPartner}<br><br>${company ? partnerText.behalf(escapeHtml(company)) : partnerText.thanks}<br><br>${config.copy}`
     : config.copy;
 
   const confirmation = await sendEmail({
     apiKey, senderName, senderEmail, to: email, subject: config.subject,
-    htmlContent: frame(config.kicker, config.title, greeting),
-    textContent: `${name ? `Dear ${name},\n\n` : ''}${config.copy}`,
+    htmlContent: frame(config.kicker, config.title, greeting, formName === 'partner-inquiry' ? partnerText.button : 'Discover The Seventh Table', 'https://the-seventh-table.com/', language, formName === 'partner-inquiry' ? partnerText.footer : 'Until the next reservation…'),
+    textContent: `${name ? `${formName === 'partner-inquiry' ? partnerText.dearName(name) : `Dear ${name},`}\n\n` : ''}${config.copy}`,
     replyTo: config.inbox,
     tags: [`${formName}-confirmation`],
   });
