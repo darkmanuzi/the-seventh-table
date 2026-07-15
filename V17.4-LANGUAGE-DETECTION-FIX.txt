@@ -1,0 +1,14 @@
+THE SEVENTH TABLE — V17.4
+LANGUAGE DETECTION FIX
+
+Changes:
+- Removes the obsolete localStorage key "tst-language" once.
+- Uses the new versioned key "tst-language-v17-4".
+- Runs a clean browser-language detection after deployment.
+- Checks the complete navigator.languages preference list.
+- Falls back to German for German-speaking system time zones when the browser language is unsupported.
+- Keeps every deliberate manual DE / EN / FR / ES selection permanently from V17.4 onward.
+- Brand names and the browser-translation protection remain unchanged.
+
+Deployment:
+Upload the complete V17.4 folder or ZIP to Netlify as usual.

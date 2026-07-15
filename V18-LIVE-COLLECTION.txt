@@ -1,0 +1,12 @@
+THE SEVENTH TABLE — V18 LIVE COLLECTION
+
+Changes:
+- Reservations are now displayed chronologically from I to X.
+- Reservation I, II and III are marked Available Now with release dates.
+- Reservation IV is highlighted as Next Reservation.
+- Reservation IV–X show Coming Soon and their release dates.
+- Status labels and dates adapt to DE / EN / FR / ES.
+- Featured Reservation updated to Reservation III — Santorini Evening.
+- Next Service updated to Reservation IV — Spanish Terrace (16 July 2026).
+- Atlas destination strip now follows chronological order.
+- Existing forms, language detection and email-language logic remain unchanged.

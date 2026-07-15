@@ -1,25 +1,46 @@
 const reservations = [
-  {n:'X',title:'Buenos Aires Evening',city:'Buenos Aires',country:'Argentina',lat:-34.6037,lon:-58.3816,copy:'Warm rhythms, candlelight and the timeless elegance of an unforgettable Argentine evening.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-x--buenos-aires-evening'},
-  {n:'IX',title:'Sarajevo Courtyard',city:'Sarajevo',country:'Bosnia and Herzegovina',lat:43.8563,lon:18.4131,copy:'An intimate courtyard where East meets West, filled with history, conversation and quiet emotion.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-ix--sarajevo-courtyard?ref=release'},
-  {n:'VIII',title:'Marrakech Courtyard',city:'Marrakech',country:'Morocco',lat:31.6295,lon:-7.9811,copy:'Golden lanterns, aromatic spices and the hypnotic atmosphere of a Moroccan evening.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-viii--marrakech-courtyard?ref=release'},
-  {n:'VII',title:'Bosphorus Nights',city:'Istanbul',country:'Türkiye',lat:41.0082,lon:28.9784,copy:'Where Europe and Asia meet beneath shimmering lights and endless conversations.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-vii---bosphorus-nights?ref=release'},
-  {n:'VI',title:'Kyoto Garden',city:'Kyoto',country:'Japan',lat:35.0116,lon:135.7681,copy:'Peaceful elegance inspired by Japanese gardens, silence and timeless beauty.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-vi--kyoto-garden?ref=release'},
-  {n:'V',title:'Lisbon Alfresco',city:'Lisbon',country:'Portugal',lat:38.7223,lon:-9.1393,copy:'Sunlit terraces, Atlantic breezes and relaxed afternoons overlooking the old city.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-v--lisbon-alfresco?ref=release'},
-  {n:'IV',title:'Spanish Terrace',city:'Madrid',country:'Spain',lat:40.4168,lon:-3.7038,copy:'A warm Mediterranean evening filled with wine, laughter and golden sunsets.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-iv--spanish-terrace?ref=release'},
-  {n:'III',title:'Santorini Evening',city:'Santorini',country:'Greece',lat:36.3932,lon:25.4615,copy:'White architecture, blue horizons and the calm of the Aegean Sea at dusk.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-iii---santorini-evening?ref=release'},
-  {n:'II',title:'Paris Bistro',city:'Paris',country:'France',lat:48.8566,lon:2.3522,copy:'Classic Parisian charm, intimate conversations and timeless elegance.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-ii---paris-bistro?ref=release'},
-  {n:'I',title:'Italian Sunset',city:'Rome',country:'Italy',lat:41.9028,lon:12.4964,copy:'Where the journey began. Slow evenings, fine cuisine and unforgettable sunsets.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-i--italian-sunset?ref=release'}
+  {n:'I',title:'Italian Sunset',city:'Rome',country:'Italy',lat:41.9028,lon:12.4964,copy:'Where the journey began. Slow evenings, fine cuisine and unforgettable sunsets.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-i--italian-sunset?ref=release',release:'2026-07-13',available:true},
+  {n:'II',title:'Paris Bistro',city:'Paris',country:'France',lat:48.8566,lon:2.3522,copy:'Classic Parisian charm, intimate conversations and timeless elegance.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-ii---paris-bistro?ref=release',release:'2026-07-14',available:true},
+  {n:'III',title:'Santorini Evening',city:'Santorini',country:'Greece',lat:36.3932,lon:25.4615,copy:'White architecture, blue horizons and the calm of the Aegean Sea at dusk.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-iii---santorini-evening?ref=release',release:'2026-07-15',available:true},
+  {n:'IV',title:'Spanish Terrace',city:'Madrid',country:'Spain',lat:40.4168,lon:-3.7038,copy:'A warm Mediterranean evening filled with wine, laughter and golden sunsets.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-iv--spanish-terrace?ref=release',release:'2026-07-16',available:false,next:true},
+  {n:'V',title:'Lisbon Alfresco',city:'Lisbon',country:'Portugal',lat:38.7223,lon:-9.1393,copy:'Sunlit terraces, Atlantic breezes and relaxed afternoons overlooking the old city.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-v--lisbon-alfresco?ref=release',release:'2026-07-17',available:false},
+  {n:'VI',title:'Kyoto Garden',city:'Kyoto',country:'Japan',lat:35.0116,lon:135.7681,copy:'Peaceful elegance inspired by Japanese gardens, silence and timeless beauty.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-vi--kyoto-garden?ref=release',release:'2026-07-18',available:false},
+  {n:'VII',title:'Bosphorus Nights',city:'Istanbul',country:'Türkiye',lat:41.0082,lon:28.9784,copy:'Where Europe and Asia meet beneath shimmering lights and endless conversations.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-vii---bosphorus-nights?ref=release',release:'2026-07-19',available:false},
+  {n:'VIII',title:'Marrakech Courtyard',city:'Marrakech',country:'Morocco',lat:31.6295,lon:-7.9811,copy:'Golden lanterns, aromatic spices and the hypnotic atmosphere of a Moroccan evening.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-viii--marrakech-courtyard?ref=release',release:'2026-07-20',available:false},
+  {n:'IX',title:'Sarajevo Courtyard',city:'Sarajevo',country:'Bosnia and Herzegovina',lat:43.8563,lon:18.4131,copy:'An intimate courtyard where East meets West, filled with history, conversation and quiet emotion.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-ix--sarajevo-courtyard?ref=release',release:'2026-07-21',available:false},
+  {n:'X',title:'Buenos Aires Evening',city:'Buenos Aires',country:'Argentina',lat:-34.6037,lon:-58.3816,copy:'Warm rhythms, candlelight and the timeless elegance of an unforgettable Argentine evening.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-x--buenos-aires-evening',release:'2026-07-22',available:false}
 ];
 
 const list = document.getElementById('reservationList');
-if (list) {
+const reservationLocale = {
+  en: {available:'Available Now', coming:'Coming Soon', next:'Next Reservation', released:'Released', releases:'Releases', listen:'Listen Now'},
+  de: {available:'Jetzt verfügbar', coming:'Demnächst', next:'Nächste Reservation', released:'Veröffentlicht', releases:'Erscheint', listen:'Jetzt anhören'},
+  fr: {available:'Disponible', coming:'Bientôt', next:'Prochaine Réservation', released:'Sorti le', releases:'Sortie le', listen:'Écouter'},
+  es: {available:'Disponible', coming:'Próximamente', next:'Próxima Reserva', released:'Publicado', releases:'Disponible el', listen:'Escuchar ahora'}
+};
+const dateLocales = {en:'en-GB',de:'de-DE',fr:'fr-FR',es:'es-ES'};
+const renderReservations = () => {
+  if (!list) return;
+  const lang = window.TST_I18N?.getLanguage?.() || document.documentElement.lang || 'en';
+  const copy = reservationLocale[lang] || reservationLocale.en;
+  const dateLocale = dateLocales[lang] || dateLocales.en;
+  list.innerHTML = '';
   reservations.forEach((r) => {
+    const date = new Intl.DateTimeFormat(dateLocale,{day:'numeric',month:'long',year:'numeric',timeZone:'Europe/Berlin'}).format(new Date(`${r.release}T12:00:00+02:00`));
     const el = document.createElement('article');
-    el.className = 'reservation-item';
-    el.innerHTML = `<div class="num">Reservation ${r.n}</div><div><h3>${r.title}</h3><p>${r.copy}</p><span class="reservation-meta">${r.city} · ${r.country}</span></div><a target="_blank" rel="noopener noreferrer" href="${r.url}">Reserve &amp; Listen →</a>`;
+    el.className = `reservation-item ${r.available ? 'is-available' : 'is-upcoming'}${r.next ? ' is-next' : ''}`;
+    const status = r.available ? copy.available : copy.coming;
+    const dateLabel = r.available ? copy.released : copy.releases;
+    const nextBadge = r.next ? `<span class="reservation-next">${copy.next}</span>` : '';
+    const action = r.available
+      ? `<a class="reservation-action" target="_blank" rel="noopener noreferrer" href="${r.url}">${copy.listen} →</a>`
+      : `<span class="reservation-action is-disabled" aria-disabled="true">${copy.coming}</span>`;
+    el.innerHTML = `<div class="num">Reservation ${r.n}</div><div class="reservation-copy">${nextBadge}<span class="reservation-status">${status}</span><h3>${r.title}</h3><p>${r.copy}</p><span class="reservation-meta">${r.city} · ${r.country}</span><span class="reservation-date">${dateLabel} · ${date}</span></div>${action}`;
     list.appendChild(el);
   });
-}
+};
+renderReservations();
+window.addEventListener('tst:languagechange', renderReservations);
 
 const destinationStrip = document.getElementById('destinationStrip');
 const markerLayer = document.getElementById('globeMarkerLayer');
@@ -35,7 +56,7 @@ let activeReservation = reservations.find(r => r.n === 'VII') || reservations[0]
 let requestedFocus = null;
 let pendingOpen = null;
 
-reservations.slice().reverse().forEach((r) => {
+reservations.forEach((r) => {
   if (destinationStrip) {
     const chip = document.createElement('a');
     chip.className = 'destination-chip';

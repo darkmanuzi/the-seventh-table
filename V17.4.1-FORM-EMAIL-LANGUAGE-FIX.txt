@@ -1,0 +1,10 @@
+THE SEVENTH TABLE — V17.4.1
+
+FIXES
+- Form submissions now send the language currently displayed on the website.
+- The obsolete localStorage key can no longer override the selected language.
+- Guest List confirmation emails are localized in German, English, French and Spanish.
+- Partner confirmation emails now reliably follow the manually selected language.
+
+TEST
+Select a language, submit Guest List and Partner Inquiry, and verify subject and body.

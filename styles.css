@@ -567,3 +567,17 @@ body{padding-top:34px}
 .language-choices{display:grid;grid-template-columns:repeat(2,minmax(110px,1fr));gap:10px;margin:24px 0 18px}.language-choices button,.language-switcher button{border:1px solid rgba(201,163,90,.38);background:transparent;color:#d8c39a;font:inherit;letter-spacing:.14em;cursor:pointer}.language-choices button{padding:11px 14px;font-size:11px}.language-choices button:hover,.language-choices button.is-active,.language-switcher button:hover,.language-switcher button.is-active{border-color:#c9a35a;color:#fff;background:rgba(201,163,90,.1)}
 .language-switcher{position:relative;margin-left:auto;z-index:30}.language-switcher>[data-language-current]{width:42px;height:34px;font-size:10px}.language-menu{position:absolute;right:0;top:42px;display:none;padding:7px;background:#0b0b0b;border:1px solid rgba(201,163,90,.3);box-shadow:0 14px 40px rgba(0,0,0,.5)}.language-switcher.is-open .language-menu{display:grid;grid-template-columns:repeat(2,36px);gap:6px}.language-menu button{height:30px;font-size:9px}.site-header nav{margin-left:auto}.site-header .language-switcher{margin-left:18px}
 @media(max-width:900px){.site-header .language-switcher{margin-left:8px}.language-choices{grid-template-columns:1fr 1fr}}
+
+/* V18 — Live Collection */
+.reservations-intro{max-width:760px;margin:-14px 0 46px;color:var(--muted);font-size:17px;line-height:1.75}
+.reservation-copy{position:relative}
+.reservation-status,.reservation-next,.reservation-date{display:block;text-transform:uppercase;letter-spacing:.16em;font-size:10px;font-weight:600}
+.reservation-status{color:var(--gold);margin-bottom:9px}
+.reservation-date{color:#918878;margin-top:12px}
+.reservation-next{display:inline-block;color:#0c0b09;background:var(--gold);padding:6px 9px;margin-bottom:10px}
+.reservation-item.is-next{background:linear-gradient(90deg,rgba(199,168,109,.075),rgba(199,168,109,.015),transparent);padding-left:18px;padding-right:18px}
+.reservation-item.is-upcoming{opacity:.78}
+.reservation-item.is-upcoming:hover{opacity:1}
+.reservation-action.is-disabled{color:#857d70;border-bottom:1px solid #514b42;padding-bottom:8px;white-space:nowrap;justify-self:end;cursor:default}
+@media(max-width:900px){.reservation-action.is-disabled{grid-column:2;justify-self:start}}
+@media(max-width:700px){.reservations-intro{margin-top:-8px;margin-bottom:30px}.reservation-action.is-disabled{grid-column:auto}.reservation-item.is-next{padding-left:0;padding-right:0}}
