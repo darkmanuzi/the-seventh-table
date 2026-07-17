@@ -24,10 +24,16 @@
     object['submitted-at'] =
       object['submitted-at'] ||
       new Date().toISOString();
+    // Use the language currently displayed on the page as the source of truth.
+    // V17.4 stores manual choices under a versioned key; the legacy key may
+    // contain an obsolete value and must never override the active interface.
+    const activeLanguage =
+      (document.documentElement.lang || '').slice(0, 2).toLowerCase();
     object.language =
       object.language ||
-      localStorage.getItem('tst-language') ||
-      ((navigator.language || 'en').slice(0, 2));
+      activeLanguage ||
+      localStorage.getItem('tst-language-v17-4') ||
+      ((navigator.language || 'en').slice(0, 2).toLowerCase());
     return object;
   };
 

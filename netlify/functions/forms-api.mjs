@@ -76,6 +76,33 @@ const frame = (kicker, title, copy, buttonLabel = 'Discover The Seventh Table', 
 </table></td></tr></table></body></html>`;
 
 
+const GUEST_I18N = {
+  en: {
+    subject: 'Your seat is reserved — The Seventh Table',
+    kicker: 'The Guest List', title: 'Your seat is reserved.',
+    copy: 'Welcome to The Seventh Table. You will receive selected invitations whenever a new Reservation is served.',
+    button: 'Explore the Reservations', footer: 'Until the next reservation…'
+  },
+  de: {
+    subject: 'Ihr Platz ist reserviert — The Seventh Table',
+    kicker: 'Die Gästeliste', title: 'Ihr Platz ist reserviert.',
+    copy: 'Willkommen bei The Seventh Table. Sie erhalten ausgewählte Einladungen, sobald eine neue Reservation serviert wird.',
+    button: 'Reservations entdecken', footer: 'Bis zur nächsten Reservation …'
+  },
+  fr: {
+    subject: 'Votre place est réservée — The Seventh Table',
+    kicker: 'La liste des invités', title: 'Votre place est réservée.',
+    copy: 'Bienvenue chez The Seventh Table. Vous recevrez des invitations sélectionnées chaque fois qu’une nouvelle Reservation sera servie.',
+    button: 'Découvrir les Reservations', footer: 'Jusqu’à la prochaine Reservation…'
+  },
+  es: {
+    subject: 'Su lugar está reservado — The Seventh Table',
+    kicker: 'La lista de invitados', title: 'Su lugar está reservado.',
+    copy: 'Le damos la bienvenida a The Seventh Table. Recibirá invitaciones seleccionadas cada vez que se sirva una nueva Reservation.',
+    button: 'Descubrir las Reservations', footer: 'Hasta la próxima Reservation…'
+  }
+};
+
 const PARTNER_I18N = {
   en: {
     subject: 'Partnership request received — The Seventh Table',
@@ -142,11 +169,15 @@ function detailsTable(data) {
 async function guestWorkflow({ data, email, apiKey, senderName, senderEmail }) {
   if (clean(data['marketing-consent']).toLowerCase() !== 'yes') throw new Error('Marketing consent is required');
 
+  const language = normalizeLanguage(data.language);
+  const guestText = GUEST_I18N[language];
   const mail = await sendEmail({
     apiKey, senderName, senderEmail, to: email,
-    subject: 'Your seat is reserved — The Seventh Table',
-    htmlContent: frame('The Guest List', 'Your seat is reserved.', 'Welcome to The Seventh Table. You will receive selected invitations whenever a new Reservation is served.', 'Explore the Reservations', 'https://the-seventh-table.com/#reservations'),
-    textContent: 'Welcome to The Seventh Table. Your seat is reserved. You will receive selected invitations whenever a new Reservation is served.',
+    subject: guestText.subject,
+    htmlContent: frame(guestText.kicker, guestText.title, guestText.copy, guestText.button, 'https://the-seventh-table.com/#reservations', language, guestText.footer),
+    textContent: `${guestText.title}
+
+${guestText.copy}`,
     tags: ['guest-list-confirmation'],
   });
   if (!mail.ok) throw new Error(`Brevo welcome email failed (${mail.status})`);

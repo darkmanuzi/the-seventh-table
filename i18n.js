@@ -1,5 +1,5 @@
 (() => {
-  // V17.3.1 — Brand names are never translated.
+  // V17.4 — Brand names are never translated.
   const BRAND_TERMS = new Set([
     'THE SEVENTH TABLE', 'The Seventh Table',
     'THE HOUSE', 'The House',
@@ -134,8 +134,46 @@
   const originalText = new WeakMap();
   const originalAttrs = new WeakMap();
   const textAttrs = ['placeholder','aria-label','title','data-default-label','data-loading-label'];
-  let lang = localStorage.getItem('tst-language') || ((navigator.language || 'en').slice(0,2));
-  if (!supported.includes(lang)) lang = 'en';
+
+  // V17.4 — clean language startup.
+  // The former key could contain an accidentally saved language (for example FR)
+  // and therefore override the browser language forever. A versioned key gives
+  // every visitor one clean automatic detection while preserving all deliberate
+  // selections made from this version onward.
+  const STORAGE_KEY = 'tst-language-v17-4';
+  const LEGACY_STORAGE_KEYS = ['tst-language'];
+
+  function normaliseLanguage(value) {
+    return String(value || '').trim().toLowerCase().split('-')[0];
+  }
+
+  function detectBrowserLanguage() {
+    const preferences = Array.isArray(navigator.languages) && navigator.languages.length
+      ? navigator.languages
+      : [navigator.language || navigator.userLanguage || ''];
+
+    for (const preference of preferences) {
+      const candidate = normaliseLanguage(preference);
+      if (supported.includes(candidate)) return candidate;
+    }
+
+    // A German-system fallback prevents an unsupported browser language from
+    // sending visitors in Germany to an unrelated translation.
+    try {
+      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (['Europe/Berlin', 'Europe/Vienna', 'Europe/Zurich'].includes(timeZone)) return 'de';
+    } catch (_) {}
+
+    return 'en';
+  }
+
+  LEGACY_STORAGE_KEYS.forEach((key) => {
+    try { localStorage.removeItem(key); } catch (_) {}
+  });
+
+  let savedLanguage = null;
+  try { savedLanguage = normaliseLanguage(localStorage.getItem(STORAGE_KEY)); } catch (_) {}
+  let lang = supported.includes(savedLanguage) ? savedLanguage : detectBrowserLanguage();
 
   function translateString(value, target) {
     const clean = value.trim();
@@ -177,7 +215,9 @@
 
   function setLanguage(next) {
     if (!supported.includes(next)) return;
-    lang=next; localStorage.setItem('tst-language',lang); translateNode();
+    lang=next;
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch (_) {}
+    translateNode();
     window.dispatchEvent(new CustomEvent('tst:languagechange',{detail:{language:lang}}));
   }
 
