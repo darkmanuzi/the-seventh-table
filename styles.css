@@ -581,3 +581,22 @@ body{padding-top:34px}
 .reservation-action.is-disabled{color:#857d70;border-bottom:1px solid #514b42;padding-bottom:8px;white-space:nowrap;justify-self:end;cursor:default}
 @media(max-width:900px){.reservation-action.is-disabled{grid-column:2;justify-self:start}}
 @media(max-width:700px){.reservations-intro{margin-top:-8px;margin-bottom:30px}.reservation-action.is-disabled{grid-column:auto}.reservation-item.is-next{padding-left:0;padding-right:0}}
+
+/* V19 — Living Collection */
+.release-place{margin:-18px auto 28px;color:var(--gold);font-size:12px;letter-spacing:.22em;text-transform:uppercase}
+.streaming-platforms{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin:0 auto 30px;max-width:720px}
+.streaming-platforms span{border:1px solid rgba(199,168,109,.28);background:rgba(199,168,109,.045);padding:8px 12px;color:#c9b98f;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.collection-progress{padding:92px 8vw;background:#090909;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.collection-progress-copy{max-width:980px;margin:0 auto 42px;text-align:center}
+.collection-progress h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(34px,5vw,66px);font-weight:400;line-height:1.08;margin:12px 0 18px}
+.collection-progress p{color:var(--muted);font-size:16px}
+.collection-track{max-width:1180px;margin:auto;display:grid;grid-template-columns:repeat(10,1fr);gap:8px}
+.collection-step{position:relative;min-height:82px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;background:#0d0d0d;transition:.25s ease}
+.collection-step span{font-family:Georgia,"Times New Roman",serif;font-size:20px;color:#595959}
+.collection-step small{position:absolute;bottom:8px;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#555}
+.collection-step.is-live{background:linear-gradient(180deg,rgba(199,168,109,.16),rgba(199,168,109,.03));border-color:rgba(199,168,109,.46)}
+.collection-step.is-live span{color:var(--gold)}
+.collection-step.is-live small{color:#aa9567}
+.collection-step.is-next{box-shadow:inset 0 0 0 1px rgba(199,168,109,.75),0 0 34px rgba(199,168,109,.08)}
+.collection-step.is-next:before{content:"NEXT";position:absolute;top:7px;font-size:7px;letter-spacing:.17em;color:var(--gold)}
+@media(max-width:760px){.collection-progress{padding:70px 20px}.collection-track{grid-template-columns:repeat(5,1fr)}.collection-step{min-height:72px}.streaming-platforms{gap:6px}.streaming-platforms span{padding:7px 9px;font-size:8px}}

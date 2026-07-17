@@ -3,13 +3,58 @@ const reservations = [
   {n:'II',title:'Paris Bistro',city:'Paris',country:'France',lat:48.8566,lon:2.3522,copy:'Classic Parisian charm, intimate conversations and timeless elegance.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-ii---paris-bistro?ref=release',release:'2026-07-14',available:true},
   {n:'III',title:'Santorini Evening',city:'Santorini',country:'Greece',lat:36.3932,lon:25.4615,copy:'White architecture, blue horizons and the calm of the Aegean Sea at dusk.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-iii---santorini-evening?ref=release',release:'2026-07-15',available:true},
   {n:'IV',title:'Spanish Terrace',city:'Madrid',country:'Spain',lat:40.4168,lon:-3.7038,copy:'A warm Mediterranean evening filled with wine, laughter and golden sunsets.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-iv--spanish-terrace?ref=release',release:'2026-07-16',available:true},
-  {n:'V',title:'Lisbon Alfresco',city:'Lisbon',country:'Portugal',lat:38.7223,lon:-9.1393,copy:'Sunlit terraces, Atlantic breezes and relaxed afternoons overlooking the old city.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-v--lisbon-alfresco?ref=release',release:'2026-07-17',available:false,next:true},
+  {n:'V',title:'Lisbon Alfresco',city:'Lisbon',country:'Portugal',lat:38.7223,lon:-9.1393,copy:'Sunlit terraces, Atlantic breezes and relaxed afternoons overlooking the old city.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-v--lisbon-alfresco?ref=release',release:'2026-07-17',available:true},
   {n:'VI',title:'Kyoto Garden',city:'Kyoto',country:'Japan',lat:35.0116,lon:135.7681,copy:'Peaceful elegance inspired by Japanese gardens, silence and timeless beauty.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-vi--kyoto-garden?ref=release',release:'2026-07-18',available:false},
   {n:'VII',title:'Bosphorus Nights',city:'Istanbul',country:'Türkiye',lat:41.0082,lon:28.9784,copy:'Where Europe and Asia meet beneath shimmering lights and endless conversations.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-vii---bosphorus-nights?ref=release',release:'2026-07-19',available:false},
   {n:'VIII',title:'Marrakech Courtyard',city:'Marrakech',country:'Morocco',lat:31.6295,lon:-7.9811,copy:'Golden lanterns, aromatic spices and the hypnotic atmosphere of a Moroccan evening.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-viii--marrakech-courtyard?ref=release',release:'2026-07-20',available:false},
   {n:'IX',title:'Sarajevo Courtyard',city:'Sarajevo',country:'Bosnia and Herzegovina',lat:43.8563,lon:18.4131,copy:'An intimate courtyard where East meets West, filled with history, conversation and quiet emotion.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-ix--sarajevo-courtyard?ref=release',release:'2026-07-21',available:false},
   {n:'X',title:'Buenos Aires Evening',city:'Buenos Aires',country:'Argentina',lat:-34.6037,lon:-58.3816,copy:'Warm rhythms, candlelight and the timeless elegance of an unforgettable Argentine evening.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-x--buenos-aires-evening',release:'2026-07-22',available:false}
 ];
+
+
+
+const releaseMoment = (r) => new Date(`${r.release}T00:00:00+02:00`).getTime();
+const now = Date.now();
+reservations.forEach((r) => { r.available = releaseMoment(r) <= now; r.next = false; });
+const latestReservation = [...reservations].filter(r => r.available).sort((a,b) => releaseMoment(b)-releaseMoment(a))[0] || reservations[0];
+const nextReservation = reservations.find(r => !r.available) || null;
+if (nextReservation) nextReservation.next = true;
+
+const latestNumber = document.getElementById('latestReleaseNumber');
+const latestTitle = document.getElementById('latestReleaseTitle');
+const latestCopy = document.getElementById('latestReleaseCopy');
+const latestPlace = document.getElementById('latestReleasePlace');
+const latestLink = document.getElementById('latestReleaseLink');
+const latestWatermark = document.getElementById('latestReleaseWatermark');
+if (latestReservation) {
+  if (latestNumber) latestNumber.textContent = `Reservation ${latestReservation.n}`;
+  if (latestTitle) latestTitle.textContent = latestReservation.title;
+  if (latestCopy) latestCopy.textContent = latestReservation.copy;
+  if (latestPlace) latestPlace.textContent = `${latestReservation.city} · ${latestReservation.country}`;
+  if (latestLink) latestLink.href = latestReservation.url;
+  if (latestWatermark) latestWatermark.textContent = latestReservation.n;
+}
+
+const liveCount = reservations.filter(r => r.available).length;
+const liveCountNode = document.getElementById('collectionLiveCount');
+const progressText = document.getElementById('collectionProgressText');
+const collectionTrack = document.getElementById('collectionTrack');
+if (liveCountNode) liveCountNode.textContent = String(liveCount);
+if (progressText) progressText.textContent = nextReservation
+  ? `The journey continues with Reservation ${nextReservation.n} — ${nextReservation.title}.`
+  : 'The complete first collection is now being served.';
+if (collectionTrack) {
+  collectionTrack.innerHTML = reservations.map(r => `<div class="collection-step${r.available ? ' is-live' : ''}${r.next ? ' is-next' : ''}"><span>${r.n}</span><small>${r.available ? 'Live' : 'Soon'}</small></div>`).join('');
+}
+
+const nextService = document.getElementById('next-service');
+const countdownDateNode = document.getElementById('countdownDate');
+if (nextService && nextReservation) {
+  nextService.dataset.release = `${nextReservation.release}T00:00:00+02:00`;
+  if (countdownDateNode) countdownDateNode.textContent = `Coming Soon · Reservation ${nextReservation.n} — ${nextReservation.title}`;
+} else if (nextService && !nextReservation) {
+  nextService.dataset.release = '';
+}
 
 const list = document.getElementById('reservationList');
 const reservationLocale = {

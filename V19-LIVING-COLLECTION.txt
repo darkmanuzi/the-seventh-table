@@ -1,0 +1,8 @@
+THE SEVENTH TABLE — V19 LIVING COLLECTION
+
+- Latest Release is selected automatically from the release calendar.
+- Next Service and countdown move automatically to the next Reservation.
+- Reservation availability is date-driven.
+- New premium 10-part collection progress display.
+- Major streaming platforms are presented cleanly; HyperFollow remains the single safe platform selector.
+- No changes to forms, Brevo functions, globe or language engine.
