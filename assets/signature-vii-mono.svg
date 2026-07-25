@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title">
+  <title id="title">The Signature VII monochrome</title>
+  <circle cx="120" cy="120" r="103" fill="none" stroke="currentColor" stroke-width="2.2"/>
+  <circle cx="120" cy="120" r="94" fill="none" stroke="currentColor" stroke-opacity="0.28" stroke-width="0.8"/>
+  <g fill="currentColor">
+    <path d="M59 72h18l27 84 27-84h18l-37 106H96L59 72z"/>
+    <path d="M55 69h29v5H55zM124 69h29v5h-29z"/>
+    <path d="M158 75h8v96h-8zM148 70h28v6h-28zM148 170h28v6h-28z"/>
+    <path d="M190 75h8v96h-8zM180 70h28v6h-28zM180 170h28v6h-28z"/>
+  </g>
+</svg>

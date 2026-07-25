@@ -143,6 +143,14 @@
   const STORAGE_KEY = 'tst-language-v17-4';
   const LEGACY_STORAGE_KEYS = ['tst-language'];
 
+
+  const V20 = {
+    de: {'Business Lounge':'Business Lounge','Enter the world of hospitality and partnerships':'Die Welt von Hospitality und Partnerschaften betreten','Enter the Business Lounge':'Business Lounge betreten','Founding Partners':'Founding Partners','Contact':'Kontakt','The Business Lounge':'Die Business Lounge','Beyond background music':'Mehr als Hintergrundmusik','Hospitality':'Hospitality'},
+    fr: {'Business Lounge':'Salon Business','Enter the world of hospitality and partnerships':'Entrer dans l’univers de l’hospitalité et des partenariats','Enter the Business Lounge':'Entrer dans le Salon Business','Founding Partners':'Partenaires fondateurs','Contact':'Contact','The Business Lounge':'Le Salon Business','Beyond background music':'Au-delà de la musique d’ambiance','Hospitality':'Hospitalité'},
+    es: {'Business Lounge':'Salón Business','Enter the world of hospitality and partnerships':'Entrar en el mundo de la hospitalidad y las alianzas','Enter the Business Lounge':'Entrar en el Salón Business','Founding Partners':'Socios fundadores','Contact':'Contacto','The Business Lounge':'El Salón Business','Beyond background music':'Más allá de la música ambiental','Hospitality':'Hospitalidad'}
+  };
+  Object.keys(V20).forEach(lang => Object.assign(T[lang] || {}, EXTRA[lang] || {}, V20[lang]));
+
   function normaliseLanguage(value) {
     return String(value || '').trim().toLowerCase().split('-')[0];
   }

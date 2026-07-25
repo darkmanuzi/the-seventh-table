@@ -600,3 +600,263 @@ body{padding-top:34px}
 .collection-step.is-next{box-shadow:inset 0 0 0 1px rgba(199,168,109,.75),0 0 34px rgba(199,168,109,.08)}
 .collection-step.is-next:before{content:"NEXT";position:absolute;top:7px;font-size:7px;letter-spacing:.17em;color:var(--gold)}
 @media(max-width:760px){.collection-progress{padding:70px 20px}.collection-track{grid-template-columns:repeat(5,1fr)}.collection-step{min-height:72px}.streaming-platforms{gap:6px}.streaming-platforms span{padding:7px 9px;font-size:8px}}
+
+
+/* V20 — Business Lounge */
+.business-body{background:#080808;color:var(--ivory)}
+.business-header{background:rgba(8,8,8,.82);backdrop-filter:blur(16px)}
+.business-hero{min-height:100vh;position:relative;display:flex;align-items:center;padding:150px 8vw 90px;overflow:hidden;background:linear-gradient(90deg,#070707 0%,rgba(7,7,7,.82) 43%,rgba(7,7,7,.22) 100%),url('assets/hero.jpg') center/cover no-repeat}
+.business-hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 48%,rgba(199,168,109,.12),transparent 28%),linear-gradient(180deg,transparent 65%,#080808)}
+.business-hero-copy{position:relative;z-index:2;max-width:850px}.business-hero h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(52px,7.8vw,118px);font-weight:400;line-height:.94;margin:18px 0 32px;letter-spacing:-.035em}.business-hero-copy>p:not(.section-kicker){max-width:690px;color:#c5bfb3;font-size:18px;line-height:1.8}
+.business-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}.business-hero-note{position:absolute;right:5vw;bottom:70px;z-index:2;text-align:right;border-right:1px solid var(--gold);padding-right:18px}.business-hero-note span,.business-hero-note strong{display:block}.business-hero-note span{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}.business-hero-note strong{font-family:Georgia,serif;font-weight:400;margin-top:8px}
+.business-intro{padding:120px 8vw;display:grid;grid-template-columns:1fr 1fr;gap:8vw;border-bottom:1px solid var(--line)}.business-intro h2,.business-division h2,.business-listen h2,.founding-section h2,.business-contact h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(38px,5vw,72px);line-height:1.05;margin:14px 0}.business-intro>div:last-child{padding-top:35px;color:var(--muted);font-size:17px;line-height:1.85}
+.business-division{padding:120px 8vw;background:#0b0b0b}.business-division-head{max-width:850px;margin-bottom:55px}.business-division-head>p:last-child{color:var(--muted);font-size:17px;line-height:1.7}.business-sector-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(199,168,109,.22)}.business-sector-grid article{background:#0b0b0b;padding:48px;min-height:285px}.business-sector-grid span{color:var(--gold);font-size:10px;letter-spacing:.2em}.business-sector-grid h3{font-family:Georgia,serif;font-size:32px;font-weight:400;margin:45px 0 14px}.business-sector-grid p{color:var(--muted);line-height:1.75;max-width:520px}
+.business-listen{padding:120px 8vw;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(135deg,#090909,#11100e)}.business-listen>div:first-child{max-width:850px}.business-listen>div:first-child p:last-child{color:var(--muted);font-size:17px;line-height:1.75}.business-reservations{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(199,168,109,.18);margin-top:55px}.business-reservations span{background:#0b0b0b;padding:18px 22px;color:#c7b98f;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.founding-section{padding:130px 8vw;display:grid;grid-template-columns:minmax(220px,.55fr) 1.45fr;gap:7vw;align-items:center;background:#050505}.founding-mark{font-family:Georgia,serif;font-size:clamp(130px,20vw,300px);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(199,168,109,.55);text-align:center}.founding-section>div:last-child>p:not(.section-kicker){color:var(--muted);font-size:17px;line-height:1.8;max-width:790px}.founding-rule{color:var(--gold)!important;text-transform:uppercase;letter-spacing:.16em;font-size:11px!important;margin:28px 0}
+.business-paths{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(199,168,109,.22)}.business-paths a{background:#0c0c0c;padding:60px 42px;min-height:340px;transition:.3s}.business-paths a:hover{background:#12110f}.business-paths span{color:var(--gold);font-size:9px;letter-spacing:.2em;text-transform:uppercase}.business-paths h3{font-family:Georgia,serif;font-size:34px;font-weight:400;margin:55px 0 14px}.business-paths p{color:var(--muted);line-height:1.7}.business-paths em{display:block;margin-top:35px;color:var(--ivory);font-style:normal;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+.business-contact{padding:120px 8vw;display:grid;grid-template-columns:.85fr 1.15fr;gap:7vw;background:#0a0a0a}.business-contact>div>p:last-child{color:var(--muted);font-size:16px;line-height:1.75}.business-form{margin:0}.partner-buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:25px}
+@media(max-width:900px){.business-header nav a:nth-child(2),.business-header nav a:nth-child(3){display:none}.business-hero{padding:130px 24px 80px}.business-hero-note{display:none}.business-intro,.business-contact,.founding-section{grid-template-columns:1fr;padding:85px 24px}.business-division,.business-listen{padding:85px 24px}.business-sector-grid,.business-paths{grid-template-columns:1fr}.business-reservations{grid-template-columns:1fr}.founding-mark{font-size:150px;text-align:left}.business-sector-grid article{padding:34px;min-height:230px}.business-paths a{min-height:auto;padding:48px 28px}}
+
+/* V20.1 — Business Lounge interaction and executive polish */
+.business-founding-teaser{max-width:720px;margin:22px 0 0;padding-left:18px;border-left:1px solid var(--gold);color:var(--gold)!important;font-size:11px!important;line-height:1.65!important;letter-spacing:.15em;text-transform:uppercase}
+.business-division:focus,.founding-section:focus,.business-contact:focus{outline:none}
+.business-body{scroll-padding-top:92px}
+.business-sector-grid article{transition:background .3s ease,transform .3s ease}
+.business-sector-grid article:hover{background:#11100e;transform:translateY(-2px)}
+@media(max-width:700px){.business-founding-teaser{font-size:9px!important;letter-spacing:.12em}.business-hero h1{font-size:clamp(48px,14vw,76px)}}
+
+/* V21 — The Signature VII */
+.signature-vii{display:block;width:100%;height:auto;filter:none}
+.signature-vii-small{width:58px;min-width:58px}
+.signature-vii-confirmation{width:92px;margin:0 0 22px}
+.lounge-note span{display:none}
+.private-invitation-mark{display:flex;align-items:center;justify-content:center}
+.private-invitation-mark .signature-vii{width:clamp(110px,12vw,176px)}
+.founding-mark{display:flex;align-items:center;justify-content:center;font-size:0;-webkit-text-stroke:0}
+.founding-mark .signature-vii{width:min(100%,290px)}
+@media(max-width:900px){.founding-mark{justify-content:flex-start}.founding-mark .signature-vii{width:150px}}
+@media(max-width:680px){.private-invitation-mark .signature-vii{width:112px}.signature-vii-small{width:52px;min-width:52px}}
+
+/* V22 — Correct Signature VII integration */
+.brand-with-mark{display:inline-flex!important;align-items:center;gap:12px;white-space:nowrap}
+.brand-with-mark img{width:36px;height:36px;object-fit:contain;flex:0 0 auto;filter:none}
+.brand-with-mark span{display:inline-block}
+.welcome-mark{width:102px;height:102px;object-fit:contain;margin:0 auto 24px;filter:none}
+.hero-signature-mark{width:clamp(100px,10.5vw,150px);height:auto;margin:0 auto 28px;filter:none}
+.business-hero-mark{width:clamp(88px,8vw,128px);height:auto;margin:0 0 24px;filter:none}
+.signature-vii{filter:none}
+@media(max-width:760px){.brand-with-mark{gap:8px}.brand-with-mark img{width:31px;height:31px}.brand-with-mark span{font-size:11px}.welcome-mark{width:92px;height:92px}.hero-signature-mark{width:112px}.business-hero-mark{width:92px}}
+
+/* V23 — Signature VII system: calm prestige + quiet UI */
+.brand-with-mark img{width:32px;height:32px;opacity:.92}
+.hero-signature-mark{width:clamp(88px,8.5vw,126px);margin-bottom:30px}
+.business-hero-mark{width:clamp(78px,7vw,108px)}
+.private-invitation-mark{text-shadow:none}
+.private-invitation-mark .signature-vii{width:clamp(96px,10vw,148px)}
+.founding-mark .signature-vii{width:min(100%,250px)}
+.signature-vii,.welcome-mark,.hero-signature-mark,.business-hero-mark,.brand-with-mark img{filter:none!important;box-shadow:none!important;text-shadow:none!important}
+@media(max-width:760px){.brand-with-mark img{width:29px;height:29px}.hero-signature-mark{width:98px}.business-hero-mark{width:82px}}
+
+/* =========================================================
+   V24 — CINEMATIC HOUSE EXPERIENCE
+   Quiet motion, editorial pacing and restrained interaction.
+   ========================================================= */
+:root{--ease-luxury:cubic-bezier(.22,.61,.36,1);--ease-exit:cubic-bezier(.55,.06,.68,.19)}
+body{background:#080808}
+body.v24-ready{overflow-x:hidden}
+
+/* Cinematic entrance */
+.welcome{background:radial-gradient(circle at 50% 46%,rgba(199,168,109,.055),transparent 30%),#070707}
+.welcome-card{transform:translateY(8px);animation:v24WelcomeIn 1.4s var(--ease-luxury) both}
+.welcome-mark{animation:v24MarkIn 1.55s var(--ease-luxury) both}
+.welcome p{animation:v24CopyIn .9s .42s var(--ease-luxury) both}
+.welcome h2{animation:v24CopyIn 1s .56s var(--ease-luxury) both}
+.welcome button{animation:v24CopyIn .9s .72s var(--ease-luxury) both}
+.welcome.hide .welcome-card{transform:scale(.985);opacity:0;transition:transform .9s var(--ease-luxury),opacity .65s ease}
+@keyframes v24WelcomeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(8px)}}
+@keyframes v24MarkIn{0%{opacity:0;transform:scale(.9)}100%{opacity:1;transform:scale(1)}}
+@keyframes v24CopyIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* Hero: restrained cinematic movement */
+.hero{isolation:isolate;overflow:hidden}
+.hero-bg{will-change:transform;animation:none!important;transform:scale(1.035);transition:transform 1.8s var(--ease-luxury)}
+body.v24-entered .hero-bg{transform:scale(1)}
+.hero:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.22),transparent 28%,transparent 72%,rgba(0,0,0,.16)),linear-gradient(180deg,rgba(0,0,0,.04),transparent 55%,rgba(0,0,0,.28))}
+.hero-content{z-index:2}
+.hero-content>*{opacity:0;transform:translateY(17px)}
+body.v24-entered .hero-content>*{opacity:1;transform:none;transition:opacity .9s var(--ease-luxury),transform 1s var(--ease-luxury)}
+body.v24-entered .hero-content>:nth-child(1){transition-delay:.14s}
+body.v24-entered .hero-content>:nth-child(2){transition-delay:.28s}
+body.v24-entered .hero-content>:nth-child(3){transition-delay:.4s}
+body.v24-entered .hero-content>:nth-child(4){transition-delay:.54s}
+body.v24-entered .hero-content>:nth-child(5){transition-delay:.68s}
+.discover{z-index:2;opacity:.72;animation:v24Discover 2.8s ease-in-out infinite}
+@keyframes v24Discover{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(6px);opacity:.9}}
+
+/* Editorial reveals with staggered content */
+.section-reveal{opacity:0;transform:translateY(34px);transition:opacity 1.05s var(--ease-luxury),transform 1.15s var(--ease-luxury)}
+.section-reveal.visible{opacity:1;transform:none}
+.section-reveal .v24-stagger{opacity:0;transform:translateY(18px);transition:opacity .86s var(--ease-luxury),transform .95s var(--ease-luxury);transition-delay:calc(var(--v24-order,0) * 90ms + 90ms)}
+.section-reveal.visible .v24-stagger{opacity:1;transform:none}
+
+/* Quiet image movement */
+[data-v24-parallax]{will-change:transform;transform:translate3d(0,var(--v24-parallax-y,0px),0) scale(1.025)}
+.lounge-image,.hero-bg,.journey:before,.featured:before{backface-visibility:hidden}
+
+/* Buttons: premium line movement rather than glow */
+.button,.welcome button,.signup button{position:relative;overflow:hidden;isolation:isolate;transition:color .38s ease,border-color .38s ease,transform .45s var(--ease-luxury),background-color .38s ease}
+.button:before,.welcome button:before,.signup button:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,transparent,rgba(201,163,90,.16),transparent);transform:translateX(-115%);transition:transform .75s var(--ease-luxury)}
+.button:hover:before,.welcome button:hover:before,.signup button:hover:before{transform:translateX(115%)}
+.button:hover,.welcome button:hover,.signup button:hover{background:rgba(199,168,109,.08);color:var(--ivory);transform:translateY(-2px);border-color:#d1b777}
+.text-link{transition:color .35s ease,letter-spacing .45s var(--ease-luxury)}
+.text-link:hover{letter-spacing:.035em}
+
+/* House doors become architectural rooms */
+.house-doors a{position:relative;overflow:hidden;transition:background-color .5s ease,border-color .5s ease,transform .55s var(--ease-luxury)}
+.house-doors a:after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .65s var(--ease-luxury)}
+.house-doors a:hover{transform:translateY(-4px);background:rgba(201,163,90,.035)}
+.house-doors a:hover:after{transform:scaleX(1)}
+
+/* Header refinement and active-room indication */
+.site-header{transition:background-color .55s ease,border-color .55s ease,backdrop-filter .55s ease,padding .45s var(--ease-luxury)}
+.site-header.scrolled{backdrop-filter:blur(18px);background:rgba(7,7,7,.9)}
+.site-header nav a{position:relative;transition:color .35s ease}
+.site-header nav a:after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .45s var(--ease-luxury)}
+.site-header nav a:hover:after,.site-header nav a.is-current:after{transform:scaleX(1)}
+.site-header nav a.is-current{color:var(--gold)}
+
+/* Calm image hover, never zoom aggressively */
+.reservation-item,.destination-chip,.social-launch-card,.collection-progress{transition:border-color .45s ease,background-color .45s ease,transform .55s var(--ease-luxury)}
+.reservation-item:hover,.destination-chip:hover{transform:translateY(-3px)}
+
+/* Page transitions */
+.page-curtain{background:#080808}
+.page-curtain:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(201,163,90,.055),transparent 28%);opacity:0;transition:opacity .45s ease}
+.page-curtain.is-leaving:after{opacity:1}
+
+@media(max-width:900px){
+  .section-reveal .v24-stagger{transition-delay:calc(var(--v24-order,0) * 45ms + 50ms)}
+  [data-v24-parallax]{transform:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .welcome-card,.welcome-mark,.welcome p,.welcome h2,.welcome button,.discover{animation:none!important}
+  .hero-content>*,.section-reveal .v24-stagger{opacity:1!important;transform:none!important;transition:none!important}
+  .hero-bg,[data-v24-parallax]{transform:none!important;transition:none!important}
+}
+
+
+/* V24.1 — unmistakable cinematic entrance + restrained sound control */
+body.welcome-active{overflow:hidden}
+.welcome{transition:opacity 1.15s cubic-bezier(.22,1,.36,1),visibility 1.15s ease;background:radial-gradient(circle at 50% 44%,rgba(199,168,109,.08),transparent 28%),#050505}
+.welcome-card{animation:v241SceneIn 2.1s cubic-bezier(.22,1,.36,1) both}
+.welcome-mark{animation:v241SealIn 1.9s cubic-bezier(.22,1,.36,1) both}
+.welcome p{animation:v241LineIn 1.1s .58s cubic-bezier(.22,1,.36,1) both}
+.welcome h2{animation:v241LineIn 1.2s .78s cubic-bezier(.22,1,.36,1) both}
+.welcome button{animation:v241LineIn 1s 1.02s cubic-bezier(.22,1,.36,1) both}
+.welcome.hide{opacity:0;visibility:hidden;pointer-events:none}
+.welcome.hide .welcome-card{transform:scale(1.035);opacity:0;filter:blur(7px);transition:transform 1.05s cubic-bezier(.22,1,.36,1),opacity .72s ease,filter .9s ease}
+@keyframes v241SceneIn{from{opacity:0;transform:translateY(24px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes v241SealIn{0%{opacity:0;transform:scale(.82) rotate(-3deg)}60%{opacity:1}100%{opacity:1;transform:none}}
+@keyframes v241LineIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+body.welcome-active 
+
+@media(prefers-reduced-motion:reduce){.welcome-card,.welcome-mark,.welcome p,.welcome h2,.welcome button{animation:none!important}.welcome.hide .welcome-card{filter:none}}
+
+
+
+/* =========================================================
+   V25 — RELEASE CANDIDATE REFINEMENT
+   Final pre-launch polish: hierarchy, rhythm, mobile and performance.
+   ========================================================= */
+:root{
+  --gold-soft:#bfa36d;
+  --gold-line:rgba(199,168,109,.24);
+  --section-space:clamp(88px,9vw,144px);
+}
+
+/* More cinematic first frame without adding visual noise */
+.hero{min-height:100svh;padding-top:calc(var(--header) + 76px);padding-bottom:110px}
+.hero-bg{background-position:center 46%;filter:saturate(.68) brightness(.74) contrast(1.04)}
+.hero:before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,transparent 0 21%,rgba(0,0,0,.12) 48%,rgba(0,0,0,.56) 100%)}
+.hero-content{max-width:1180px;padding-inline:20px}
+.hero-signature-mark{margin-bottom:34px}
+.hero .eyebrow{font-size:11px;letter-spacing:.34em}
+.hero h1{font-size:clamp(54px,8.7vw,126px);letter-spacing:.105em;text-wrap:balance}
+.hero-line{max-width:760px;margin-left:auto;margin-right:auto;color:#e8e2d7;line-height:1.22;text-wrap:balance}
+.discover{bottom:28px;letter-spacing:.28em}
+
+/* One consistent editorial rhythm */
+.journey,.reservations,.world,.partners,.newsletter,.invitation,
+.business-intro,.business-division,.business-listen,.business-contact,.founding-section{padding-top:var(--section-space);padding-bottom:var(--section-space)}
+.section-kicker{letter-spacing:.31em}
+.section-reveal{transform:translateY(26px)}
+.section-reveal .v24-stagger{transform:translateY(14px)}
+
+/* Refined content widths and typography */
+.journey-grid,.world-intro,.next-service-inner,.collection-progress{max-width:var(--max);margin-inline:auto}
+.journey-grid h2,.world-intro h2{letter-spacing:-.018em;text-wrap:balance}
+.story{max-width:720px}
+.story p,.business-intro>div:last-child,.business-division-head>p:last-child,.business-listen>div:first-child p:last-child{line-height:1.9}
+.house-doors{margin-top:52px}
+.house-doors a{min-height:156px;padding:28px 26px}
+
+/* Buttons remain quiet and precise */
+.button,.welcome button,.signup button{border-color:rgba(199,168,109,.72);padding:15px 26px}
+.button:focus-visible,.welcome button:focus-visible,.signup button:focus-visible,a:focus-visible{outline:1px solid var(--gold);outline-offset:5px}
+
+/* Business Lounge: executive, calmer and more dimensional */
+.business-hero{min-height:100svh;background-position:center 44%}
+.business-hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,5,.98) 0%,rgba(5,5,5,.84) 44%,rgba(5,5,5,.18) 100%);z-index:1;pointer-events:none}
+.business-hero:after{z-index:1;background:radial-gradient(circle at 76% 46%,rgba(199,168,109,.075),transparent 28%),linear-gradient(180deg,transparent 60%,#080808)}
+.business-hero-copy,.business-hero-note{z-index:2}
+.business-hero-copy{max-width:900px}
+.business-hero h1{letter-spacing:-.025em;text-wrap:balance}
+.business-sector-grid,.business-paths,.business-reservations{border:1px solid rgba(199,168,109,.12);background:rgba(199,168,109,.16)}
+.business-sector-grid article,.business-paths a{position:relative;isolation:isolate}
+.business-sector-grid article:before,.business-paths a:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(135deg,rgba(199,168,109,.045),transparent 46%);opacity:0;transition:opacity .5s ease}
+.business-sector-grid article:hover:before,.business-paths a:hover:before{opacity:1}
+.business-sector-grid article:hover,.business-paths a:hover{transform:translateY(-3px)}
+.business-contact{border-top:1px solid rgba(199,168,109,.14)}
+
+/* Header: keep the brand quiet and navigation legible */
+.site-header{padding-inline:clamp(22px,5vw,76px)}
+.site-header.scrolled{box-shadow:0 18px 45px rgba(0,0,0,.16)}
+.brand-with-mark span{letter-spacing:.15em}
+
+/* Performance-friendly image rendering */
+img{height:auto}
+.hero-bg,.business-hero,.house-image,.lounge-image{content-visibility:auto}
+
+@media(max-width:1100px){
+  .site-header nav{gap:18px}
+  .site-header nav a{font-size:11px}
+  .hero h1{letter-spacing:.075em}
+}
+
+@media(max-width:900px){
+  :root{--section-space:82px}
+  .hero{padding:126px 20px 94px}
+  .hero h1{font-size:clamp(45px,12.6vw,74px);line-height:.94;letter-spacing:.065em}
+  .hero-line{font-size:clamp(22px,6.5vw,30px)}
+  .discover{bottom:22px}
+  .journey,.reservations,.world,.partners,.newsletter,.invitation{padding-left:24px;padding-right:24px}
+  .house-doors a{min-height:auto}
+  .business-hero{padding-top:132px}
+  .business-hero-copy>p:not(.section-kicker){font-size:16px}
+}
+
+@media(max-width:600px){
+  .service-bar{font-size:9px;letter-spacing:.08em;padding-inline:12px}
+  .service-bar a{display:none}
+  .site-header{height:68px}
+  .brand-with-mark span{font-size:10px!important;letter-spacing:.11em}
+  .hero{padding-top:112px}
+  .hero-signature-mark{width:88px;margin-bottom:24px}
+  .hero .eyebrow{font-size:9px;letter-spacing:.27em}
+  .hero h1{font-size:clamp(40px,12vw,58px);letter-spacing:.045em;margin:16px 0 20px}
+  .hero-line{font-size:22px;margin-bottom:30px}
+  .button{width:100%;max-width:320px;text-align:center}
+  .business-actions .button{width:auto;max-width:none}
+  .welcome-card{padding:24px}
+  .welcome h2{font-size:38px}
+}

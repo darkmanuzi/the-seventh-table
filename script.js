@@ -187,14 +187,11 @@ if ('IntersectionObserver' in window) {
 const welcome = document.getElementById('welcome');
 const enter = document.getElementById('enterSite');
 if (welcome && enter) {
-  if (sessionStorage.getItem('tst-entered') === 'yes') {
-    welcome.classList.add('hide');
-    welcome.setAttribute('aria-hidden', 'true');
-  }
+  document.body.classList.add('welcome-active');
   enter.addEventListener('click', () => {
-    sessionStorage.setItem('tst-entered', 'yes');
     welcome.classList.add('hide');
     welcome.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('welcome-active');
   });
 }
 
@@ -451,7 +448,7 @@ if ('IntersectionObserver' in window && sections.length) {
     shell.classList.add('texture-ready');
   };
   textureImage.onerror = () => shell.classList.add('no-webgl');
-  textureImage.src = 'assets/earth-night-3d.jpg';
+  textureImage.src = window.TST_EARTH_TEXTURE_DATA || 'assets/earth-night-3d.jpg';
 
   const perspective = (fov, aspect, near, far) => {
     const f = 1 / Math.tan(fov / 2);
@@ -756,5 +753,103 @@ if ('IntersectionObserver' in window && sections.length) {
     } catch {
       setStatus('Please copy the address from your browser.');
     }
+  });
+})();
+
+// V24 — Cinematic House Experience.
+(() => {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.body.classList.add('v24-ready');
+
+  // Stagger the meaningful elements inside each editorial section.
+  const candidates = [
+    '.section-kicker','h2','h3','.eyebrow','.house-lead','.story > p',
+    '.house-doors > a','.reservation-item','.collection-step','.destination-chip',
+    '.lounge-copy > p','.lounge-actions','.lounge-note','.social-launch-card',
+    '.private-invitation-mark','.private-invitation-copy','.private-invitation .button'
+  ].join(',');
+  document.querySelectorAll('.section-reveal').forEach((section) => {
+    let order = 0;
+    section.querySelectorAll(candidates).forEach((element) => {
+      if (element.closest('.section-reveal') !== section || element.classList.contains('v24-stagger')) return;
+      element.classList.add('v24-stagger');
+      element.style.setProperty('--v24-order', String(Math.min(order, 8)));
+      order += 1;
+    });
+  });
+
+  // Enter animation: preserve the existing welcome interaction and continue the scene.
+  const welcome = document.getElementById('welcome');
+  const enter = document.getElementById('enterSite');
+  const revealHero = () => {
+    requestAnimationFrame(() => document.body.classList.add('v24-entered'));
+  };
+  if (!welcome) revealHero();
+  enter?.addEventListener('click', () => window.setTimeout(revealHero, 520), {once:true});
+
+  if (reducedMotion) {
+    document.body.classList.add('v24-entered');
+    return;
+  }
+
+  // Very subtle parallax. No effect is stronger than 14 px.
+  const parallaxNodes = [
+    document.querySelector('.hero-bg'),
+    document.querySelector('.lounge-image')
+  ].filter(Boolean);
+  parallaxNodes.forEach((node) => node.setAttribute('data-v24-parallax',''));
+  let ticking = false;
+  const updateParallax = () => {
+    const viewport = window.innerHeight || 800;
+    parallaxNodes.forEach((node) => {
+      const rect = node.parentElement?.getBoundingClientRect?.() || node.getBoundingClientRect();
+      const progress = Math.max(-1, Math.min(1, (rect.top + rect.height / 2 - viewport / 2) / viewport));
+      node.style.setProperty('--v24-parallax-y', `${(progress * -14).toFixed(2)}px`);
+    });
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateParallax);
+    }
+  }, {passive:true});
+  updateParallax();
+
+  // Mark the room currently being viewed in the primary navigation.
+  const anchors = [...document.querySelectorAll('.site-header nav a[href^="#"]')]
+    .map((link) => ({link, section:document.querySelector(link.getAttribute('href'))}))
+    .filter((item) => item.section);
+  if ('IntersectionObserver' in window && anchors.length) {
+    const activeObserver = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      anchors.forEach(({link,section}) => link.classList.toggle('is-current', section === visible.target));
+    }, {rootMargin:'-28% 0px -58% 0px',threshold:[0,.12,.3,.6]});
+    anchors.forEach(({section}) => activeObserver.observe(section));
+  }
+})();
+
+
+// V25 — Release candidate refinement.
+(() => {
+  document.documentElement.classList.add('v25');
+
+  // Decode below-the-fold images only when needed. Hero and brand marks stay eager.
+  document.querySelectorAll('img').forEach((image) => {
+    if (image.closest('.welcome,.hero,.site-header,.business-hero')) return;
+    if (!image.hasAttribute('loading')) image.loading = 'lazy';
+    if (!image.hasAttribute('decoding')) image.decoding = 'async';
+  });
+
+  // Prevent the final page state from depending on a stale local animation class.
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) document.body.classList.add('v24-entered');
+  });
+
+  // Keep keyboard navigation calm and intentional.
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') document.activeElement?.blur?.();
   });
 })();

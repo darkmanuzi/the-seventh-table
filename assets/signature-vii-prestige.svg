@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">The Signature VII — Prestige</title>
+  <desc id="desc">Champagne-gold Roman numeral VII within a refined circular seal.</desc>
+  <defs>
+    <linearGradient id="ring" x1="250" y1="170" x2="940" y2="1030" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7e6232"/>
+      <stop offset=".18" stop-color="#c5a15e"/>
+      <stop offset=".37" stop-color="#e0c68d"/>
+      <stop offset=".56" stop-color="#aa8244"/>
+      <stop offset=".76" stop-color="#d2b574"/>
+      <stop offset="1" stop-color="#74582f"/>
+    </linearGradient>
+    <linearGradient id="type" x1="330" y1="340" x2="840" y2="820" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8b6a36"/>
+      <stop offset=".24" stop-color="#d0b274"/>
+      <stop offset=".48" stop-color="#ead7aa"/>
+      <stop offset=".69" stop-color="#b58b4b"/>
+      <stop offset="1" stop-color="#806133"/>
+    </linearGradient>
+  </defs>
+  <circle cx="600" cy="600" r="448" fill="none" stroke="#3f321f" stroke-width="33"/>
+  <circle cx="600" cy="600" r="448" fill="none" stroke="url(#ring)" stroke-width="27"/>
+  <circle cx="600" cy="600" r="466" fill="none" stroke="#cbb27d" stroke-width="2" opacity=".72"/>
+  <circle cx="600" cy="600" r="430" fill="none" stroke="#6f552f" stroke-width="2" opacity=".82"/>
+  <path d="m603.70047 417.76h-113.36v15.6c20.28 0 31.2 1.56 32.76 5.2 2.08 3.12 3.12 7.28 3.12 11.96 0 9.88-3.12 22.88-9.36 39l-85.28 218.4-95.68-274.56h41.6v-15.6H242.82v15.6h39l122.2 352.56h20.8l112.84-296.4c9.88-27.04 19.76-43.68 29.12-49.92 6.76-4.68 18.72-6.76 36.92-6.24zm159.83995 341.12h-48.36V432.84h48.36v-16.12h-148.72v16.12h48.88v326.04h-48.88V775h148.72zm179.59954 0h-48.36V432.84h48.36v-16.12h-148.72v16.12h48.88v326.04h-48.88V775h148.72z" fill="#4c3920" stroke="#3b2b19" stroke-width="8" paint-order="stroke fill"/>
+  <path d="m603.70047 411.76h-113.36v15.6c20.28 0 31.2 1.56 32.76 5.2 2.08 3.12 3.12 7.28 3.12 11.96 0 9.88-3.12 22.88-9.36 39l-85.28 218.4-95.68-274.56h41.6v-15.6H242.82v15.6h39l122.2 352.56h20.8l112.84-296.4c9.88-27.04 19.76-43.68 29.12-49.92 6.76-4.68 18.72-6.76 36.92-6.24zm159.83995 341.12h-48.36V426.84h48.36v-16.12h-148.72v16.12h48.88v326.04h-48.88V769h148.72zm179.59954 0h-48.36V426.84h48.36v-16.12h-148.72v16.12h48.88v326.04h-48.88V769h148.72z" fill="url(#type)" stroke="#c1a267" stroke-width="2.2" paint-order="stroke fill"/>
+</svg>
