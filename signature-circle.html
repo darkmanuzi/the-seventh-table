@@ -14,7 +14,7 @@
   <meta name="theme-color" content="#070707">
   <link rel="canonical" href="https://the-seventh-table.com/signature-circle.html">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=26.0">
+  <link rel="stylesheet" href="styles.css?v=26.1">
 </head>
 <body class="signature-page">
   <div class="noise" aria-hidden="true"></div>
@@ -44,7 +44,29 @@
       <article><span>03 · IDENTITY</span><h2>The Signature remains.</h2><p>Each selected chef receives a dedicated place within the Circle and access to a musical world shaped for professional service.</p></article>
     </section>
 
-    <section class="signature-development">
+    <section class="signature-atlas section-reveal" aria-labelledby="signatureAtlasTitle">
+      <div class="signature-atlas-intro">
+        <div><div class="section-kicker">The Signature Atlas</div><h2 id="signatureAtlasTitle">A world of<br>distinguished tables.</h2></div>
+        <p>Every golden light marks a place where a chef has earned a seat at THE SEVENTH TABLE. Explore the Circle by country, region and Signature number.</p>
+      </div>
+      <div class="earth3d-shell signature-earth" id="earth3dShell">
+        <div class="earth3d-stars" aria-hidden="true"></div><div class="earth3d-sun" aria-hidden="true"></div>
+        <div class="earth3d-stage" id="earth3dStage" aria-label="Interactive rotating Earth showing Signature locations">
+          <canvas id="earthCanvas" aria-hidden="true"></canvas>
+          <svg id="globeRouteLayer" class="globe-route-layer" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"><path id="globeRoutePath"></path></svg>
+          <div id="globeMarkerLayer" class="globe-marker-layer" data-atlas="signature"></div>
+          <aside id="globeInfoCard" class="globe-info-card signature-globe-card" aria-live="polite"><span id="globeInfoNumber">Signature No. 001</span><strong id="globeInfoTitle">Algarve Sunset</strong><small id="globeInfoPlace">Algarve · Portugal</small><p id="globeInfoCopy">A modular musical journey for private villa dining — from arrival at sunset to the moments that remain after dessert.</p><em>First light · In development</em></aside>
+          <div class="earth3d-fallback" id="earthFallback"><img src="assets/earth-night-nasa.jpg" alt="Earth at night"></div>
+        </div>
+        <div class="earth3d-instructions"><span>DRAG TO EXPLORE · SELECT A GOLDEN LIGHT</span><span>THE SIGNATURE ATLAS · 01 LOCATION</span></div>
+      </div>
+      <div class="signature-country-index" aria-label="Signature chefs by country">
+        <article class="signature-country is-active"><div class="signature-country-flag" aria-hidden="true">PT</div><div><span>Portugal · 01 Signature</span><strong>Algarve</strong><small>No. 001 · Algarve Sunset · In Development</small></div></article>
+        <article class="signature-country is-future"><div class="signature-country-flag" aria-hidden="true">VII</div><div><span>The Circle continues</span><strong>Future countries</strong><small>New lights appear only by invitation.</small></div></article>
+      </div>
+    </section>
+
+    <section id="signature-development" class="signature-development">
       <div class="signature-development-head">
         <div><div class="section-kicker">No. 001 · In Development</div><h2>Algarve Sunset</h2></div>
         <p>A modular Signature Reservation created for the natural progression of private villa dining in the Algarve — warm Mediterranean arrival, understated dinner groove and a gradual return of energy after dessert.</p>
@@ -72,7 +94,8 @@
     <div class="footer-links"><a href="index.html">The House</a><a href="index.html#reservations">Reservations</a><a href="signature-circle.html">Signature Circle</a><a href="business.html">Business Lounge</a><a href="legal.html">Legal</a><a href="privacy.html">Privacy</a></div>
     <p class="until">Until the next reservation...</p>
   </footer>
-  <script src="script.js?v=26.0" defer></script>
-  <script src="i18n.js?v=26.0" defer></script>
+  <script src="assets/earth-texture-data.js?v=24.4"></script>
+  <script src="script.js?v=26.1" defer></script>
+  <script src="i18n.js?v=26.1" defer></script>
 </body>
 </html>

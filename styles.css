@@ -886,6 +886,21 @@ img{height:auto}
 .signature-principles span{color:var(--gold);font-size:10px;letter-spacing:.22em}
 .signature-principles h2{font-size:24px;margin:24px 0 14px}
 .signature-principles p{color:#aaa49a;line-height:1.75}
+.signature-atlas{padding:130px max(24px,calc((100vw - var(--max))/2));background:radial-gradient(circle at 50% 46%,rgba(199,168,109,.07),transparent 42%),#070707;border-top:1px solid rgba(199,168,109,.12);border-bottom:1px solid rgba(199,168,109,.12)}
+.signature-atlas-intro{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(48px,8vw,120px);align-items:end;margin:0 auto 58px;max-width:var(--max)}
+.signature-atlas-intro h2{font-size:clamp(44px,6.3vw,86px);line-height:.98;letter-spacing:-.03em;margin:18px 0 0}
+.signature-atlas-intro>p{color:#b9b1a5;font-size:16px;line-height:1.85;max-width:590px;margin:0}
+.signature-earth{max-width:var(--max);min-height:690px}
+.signature-earth .earth3d-sun{opacity:.5}
+.signature-globe-card em{color:var(--gold)}
+.signature-country-index{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:var(--max);margin:24px auto 0}
+.signature-country{display:grid;grid-template-columns:58px 1fr;gap:20px;align-items:center;padding:22px 24px;border:1px solid rgba(199,168,109,.2);background:rgba(255,255,255,.018)}
+.signature-country-flag{display:grid;place-items:center;width:58px;height:58px;border:1px solid rgba(199,168,109,.36);border-radius:50%;color:var(--gold);font:400 13px Georgia,serif;letter-spacing:.12em}
+.signature-country span,.signature-country strong,.signature-country small{display:block}
+.signature-country span{color:var(--gold);font-size:8px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px}
+.signature-country strong{font:400 23px Georgia,serif;color:var(--ivory);margin-bottom:5px}
+.signature-country small{color:#837b6f;font-size:9px;letter-spacing:.1em;text-transform:uppercase}
+.signature-country.is-future{opacity:.48}
 .signature-development{max-width:var(--max);margin:auto;padding:var(--section-space) 24px}
 .signature-development-head{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;margin-bottom:52px}
 .signature-development-head h2{font-size:clamp(42px,6vw,76px);margin:12px 0}
@@ -903,6 +918,10 @@ img{height:auto}
 .signature-access-preview:before{content:"";width:7px;height:7px;border-radius:50%;background:#8c7750;box-shadow:0 0 16px rgba(199,168,109,.42)}
 @media(max-width:900px){
   .signature-circle-intro,.signature-development-head{grid-template-columns:1fr;gap:34px}
+  .signature-atlas-intro{grid-template-columns:1fr;gap:28px}
+  .signature-country-index{grid-template-columns:1fr}
+  .signature-atlas{padding:92px 24px}
+  .signature-earth{min-height:570px}
   .signature-circle-grid{grid-template-columns:1fr}
   .signature-principles,.signature-journey{grid-template-columns:1fr}
   .signature-chef-card{min-height:390px;padding:28px}

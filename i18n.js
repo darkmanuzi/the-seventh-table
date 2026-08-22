@@ -169,6 +169,19 @@
   };
   Object.keys(V26).forEach(lang => Object.assign(T[lang] || {}, V26[lang]));
 
+  const V261 = {
+    de: {
+      'The Signature Atlas':'The Signature Atlas','A world of\ndistinguished tables.':'Eine Welt\nausgezeichneter Tische.','Every golden light marks a place where a chef has earned a seat at THE SEVENTH TABLE. Explore the Circle by country, region and Signature number.':'Jedes goldene Licht markiert einen Ort, an dem sich ein Chef einen Platz an THE SEVENTH TABLE verdient hat. Entdecken Sie den Circle nach Land, Region und Signature-Nummer.','Interactive rotating Earth showing Signature locations':'Interaktive Weltkugel mit den Orten der Signatures','A modular musical journey for private villa dining — from arrival at sunset to the moments that remain after dessert.':'Eine modulare musikalische Reise für Private Villa Dining – vom Empfang bei Sonnenuntergang bis zu den Momenten nach dem Dessert.','First light · In development':'Erstes Licht · In Entwicklung','Signature chefs by country':'Signature Chefs nach Ländern','The Circle continues':'Der Circle wächst weiter','Future countries':'Weitere Länder','New lights appear only by invitation.':'Neue Lichter erscheinen ausschließlich auf Einladung.'
+    },
+    fr: {
+      'The Signature Atlas':'The Signature Atlas','A world of\ndistinguished tables.':'Un monde de\ntables d’exception.','Every golden light marks a place where a chef has earned a seat at THE SEVENTH TABLE. Explore the Circle by country, region and Signature number.':'Chaque lumière dorée marque un lieu où un chef a mérité sa place à THE SEVENTH TABLE. Explorez le Circle par pays, région et numéro Signature.','The Circle continues':'Le Circle continue','Future countries':'Prochains pays','New lights appear only by invitation.':'De nouvelles lumières apparaissent uniquement sur invitation.'
+    },
+    es: {
+      'The Signature Atlas':'The Signature Atlas','A world of\ndistinguished tables.':'Un mundo de\nmesas distinguidas.','Every golden light marks a place where a chef has earned a seat at THE SEVENTH TABLE. Explore the Circle by country, region and Signature number.':'Cada luz dorada señala un lugar donde un chef se ha ganado un asiento en THE SEVENTH TABLE. Explore el Circle por país, región y número Signature.','The Circle continues':'El Circle continúa','Future countries':'Próximos países','New lights appear only by invitation.':'Las nuevas luces aparecen únicamente por invitación.'
+    }
+  };
+  Object.keys(V261).forEach(lang => Object.assign(T[lang] || {}, V261[lang]));
+
   function normaliseLanguage(value) {
     return String(value || '').trim().toLowerCase().split('-')[0];
   }

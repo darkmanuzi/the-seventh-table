@@ -11,6 +11,12 @@ const reservations = [
   {n:'X',title:'Buenos Aires Evening',city:'Buenos Aires',country:'Argentina',lat:-34.6037,lon:-58.3816,copy:'Warm rhythms, candlelight and the timeless elegance of an unforgettable Argentine evening.',url:'https://distrokid.com/hyperfollow/theseventhtable/reservation-x--buenos-aires-evening',release:'2026-07-22',available:false}
 ];
 
+// V26.1 — Separate, curated data for the Signature Atlas.
+// Personal chef details are published only after explicit consent.
+const signatureAtlasEntries = [
+  {n:'001',title:'Algarve Sunset',city:'Algarve',country:'Portugal',lat:37.0179,lon:-7.9304,copy:'A modular musical journey for private villa dining — from arrival at sunset to the moments that remain after dessert.',url:'#signature-development',status:'In Development',type:'signature'}
+];
+
 
 
 const releaseMoment = (r) => new Date(`${r.release}T00:00:00+02:00`).getTime();
@@ -89,6 +95,8 @@ window.addEventListener('tst:languagechange', renderReservations);
 
 const destinationStrip = document.getElementById('destinationStrip');
 const markerLayer = document.getElementById('globeMarkerLayer');
+const atlasMode = markerLayer?.dataset.atlas || 'reservations';
+const atlasItems = atlasMode === 'signature' ? signatureAtlasEntries : reservations;
 const markerElements = [];
 const routeLayer = document.getElementById('globeRouteLayer');
 const routePath = document.getElementById('globeRoutePath');
@@ -97,12 +105,12 @@ const infoNumber = document.getElementById('globeInfoNumber');
 const infoTitle = document.getElementById('globeInfoTitle');
 const infoPlace = document.getElementById('globeInfoPlace');
 const infoCopy = document.getElementById('globeInfoCopy');
-let activeReservation = reservations.find(r => r.n === 'VII') || reservations[0];
+let activeReservation = atlasMode === 'signature' ? atlasItems[0] : reservations.find(r => r.n === 'VII') || reservations[0];
 let requestedFocus = null;
 let pendingOpen = null;
 
-reservations.forEach((r) => {
-  if (destinationStrip) {
+atlasItems.forEach((r) => {
+  if (destinationStrip && atlasMode === 'reservations') {
     const chip = document.createElement('a');
     chip.className = 'destination-chip';
     chip.href = r.url;
@@ -117,11 +125,14 @@ reservations.forEach((r) => {
     const marker = document.createElement('a');
     marker.className = 'globe3d-marker';
     marker.href = r.url;
-    marker.target = '_blank';
-    marker.rel = 'noopener noreferrer';
+    if (atlasMode === 'reservations') {
+      marker.target = '_blank';
+      marker.rel = 'noopener noreferrer';
+    }
     marker.dataset.reservation = r.n;
-    marker.setAttribute('aria-label', `${r.title}, ${r.city} — open HyperFollow`);
-    marker.innerHTML = `<span class="globe3d-dot"></span><span class="globe3d-label"><b>Reservation ${r.n}</b><strong>${r.title}</strong><small>${r.city} · ${r.country}</small></span>`;
+    const markerKind = atlasMode === 'signature' ? `Signature No. ${r.n}` : `Reservation ${r.n}`;
+    marker.setAttribute('aria-label', `${markerKind}, ${r.title}, ${r.city}`);
+    marker.innerHTML = `<span class="globe3d-dot"></span><span class="globe3d-label"><b>${markerKind}</b><strong>${r.title}</strong><small>${r.city} · ${r.country}</small></span>`;
     markerLayer.appendChild(marker);
     markerElements.push({data:r, element:marker});
   }
@@ -130,7 +141,7 @@ reservations.forEach((r) => {
 const updateInfoCard = (r) => {
   if (!r) return;
   activeReservation = r;
-  if (infoNumber) infoNumber.textContent = `Reservation ${r.n}`;
+  if (infoNumber) infoNumber.textContent = atlasMode === 'signature' ? `Signature No. ${r.n}` : `Reservation ${r.n}`;
   if (infoTitle) infoTitle.textContent = r.title;
   if (infoPlace) infoPlace.textContent = `${r.city} · ${r.country}`;
   if (infoCopy) infoCopy.textContent = r.copy;
@@ -147,24 +158,23 @@ const syncDestinationFocus = () => {
   const chips = [...document.querySelectorAll('.destination-chip')];
   markerElements.forEach(({data,element}) => {
     const chip = chips.find(c => c.dataset.reservation === data.n);
-    if (!chip) return;
     const on = () => {
       element.classList.add('is-active');
-      chip.classList.add('is-active');
+      chip?.classList.add('is-active');
       focusReservation(data,false);
     };
     const off = () => {
       element.classList.remove('is-active');
-      chip.classList.remove('is-active');
+      chip?.classList.remove('is-active');
     };
-    [element,chip].forEach(node => {
+    [element,chip].filter(Boolean).forEach(node => {
       node.addEventListener('mouseenter', on);
       node.addEventListener('mouseleave', off);
       node.addEventListener('focus', on);
       node.addEventListener('blur', off);
       node.addEventListener('click', (ev) => {
         ev.preventDefault();
-        focusReservation(data,true);
+        focusReservation(data,atlasMode === 'reservations');
       });
     });
   });
@@ -643,8 +653,8 @@ if ('IntersectionObserver' in window && sections.length) {
       element.style.zIndex = String(1000 + Math.round(p.z*100));
     });
 
-    const routeOrigin = reservations.find(r => r.n === 'I') || reservations[0];
-    if (activeReservation && activeReservation.n !== routeOrigin.n) {
+    const routeOrigin = atlasMode === 'signature' ? atlasItems[0] : reservations.find(r => r.n === 'I') || reservations[0];
+    if (atlasItems.length > 1 && activeReservation && activeReservation.n !== routeOrigin.n) {
       updateRoute(routeOrigin,activeReservation,rot,size,scale);
     } else if (routePath) {
       routePath.style.opacity='0';
