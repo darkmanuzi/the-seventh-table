@@ -787,7 +787,7 @@ body.welcome-active
 
 /* One consistent editorial rhythm */
 .journey,.reservations,.world,.partners,.newsletter,.invitation,
-.business-intro,.business-division,.business-listen,.business-contact,.founding-section{padding-top:var(--section-space);padding-bottom:var(--section-space)}
+.signature-circle,.business-intro,.business-division,.business-listen,.business-contact,.founding-section{padding-top:var(--section-space);padding-bottom:var(--section-space)}
 .section-kicker{letter-spacing:.31em}
 .section-reveal{transform:translateY(26px)}
 .section-reveal .v24-stagger{transform:translateY(14px)}
@@ -840,9 +840,73 @@ img{height:auto}
   .hero-line{font-size:clamp(22px,6.5vw,30px)}
   .discover{bottom:22px}
   .journey,.reservations,.world,.partners,.newsletter,.invitation{padding-left:24px;padding-right:24px}
+  .signature-circle{padding-left:24px;padding-right:24px}
   .house-doors a{min-height:auto}
   .business-hero{padding-top:132px}
   .business-hero-copy>p:not(.section-kicker){font-size:16px}
+}
+
+/* =========================================================
+   V26 — THE SIGNATURE CIRCLE
+   A curated public honour with a private service behind it.
+   ========================================================= */
+.signature-circle{position:relative;overflow:hidden;padding-left:max(24px,calc((100vw - var(--max))/2));padding-right:max(24px,calc((100vw - var(--max))/2));background:radial-gradient(circle at 82% 18%,rgba(199,168,109,.08),transparent 25%),linear-gradient(180deg,#080808 0%,#0c0b09 48%,#080808 100%);border-top:1px solid rgba(199,168,109,.12);border-bottom:1px solid rgba(199,168,109,.12)}
+.signature-circle:before{content:"VII";position:absolute;right:-.04em;top:-.3em;font-family:Georgia,serif;font-size:clamp(220px,33vw,540px);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(199,168,109,.045);pointer-events:none}
+.signature-circle-intro{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:clamp(48px,8vw,120px);max-width:var(--max);margin:0 auto 72px;align-items:end}
+.signature-circle-intro h2{margin:16px 0 0;font-size:clamp(46px,7vw,94px);line-height:.95;letter-spacing:-.035em;text-wrap:balance}
+.signature-circle-statement{max-width:620px}
+.signature-circle-statement p{margin:0 0 18px;color:#c9c3b9;font-size:16px;line-height:1.85}
+.signature-circle-statement .text-link{display:inline-block;margin-top:12px}
+.signature-circle-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.25fr .75fr;gap:22px;max-width:var(--max);margin:0 auto}
+.signature-chef-card{position:relative;min-height:440px;padding:34px;border:1px solid rgba(199,168,109,.23);background:linear-gradient(145deg,rgba(24,22,17,.96),rgba(8,8,8,.98));display:flex;flex-direction:column;isolation:isolate;overflow:hidden;transition:transform .6s var(--ease-luxury),border-color .6s ease,box-shadow .6s ease}
+.signature-chef-card:hover{transform:translateY(-4px);border-color:rgba(199,168,109,.5);box-shadow:0 34px 80px rgba(0,0,0,.28)}
+.signature-chef-card:after{content:"";position:absolute;inset:16px;border:1px solid rgba(199,168,109,.08);pointer-events:none}
+.signature-card-number{position:relative;z-index:2;color:var(--gold);font-size:10px;letter-spacing:.28em;text-transform:uppercase}
+.signature-card-seal{position:absolute;right:36px;top:34px;width:118px;height:118px;display:grid;place-items:center;opacity:.78}
+.signature-card-seal img{width:100%;height:100%;object-fit:contain}
+.signature-card-copy{position:relative;z-index:2;margin-top:auto;max-width:620px}
+.signature-card-copy>span{display:block;margin-bottom:14px;color:var(--gold-soft);font-size:10px;letter-spacing:.23em;text-transform:uppercase}
+.signature-card-copy h3{margin:0 0 18px;font-family:Georgia,serif;font-size:clamp(36px,5vw,66px);font-weight:400;line-height:1.02;letter-spacing:-.025em}
+.signature-card-copy p{margin:0 0 12px;color:#d6d0c5;line-height:1.65}
+.signature-card-copy em{color:#8f8a82;font-size:12px;letter-spacing:.08em;font-style:normal;text-transform:uppercase}
+.signature-card-status{position:relative;z-index:2;align-self:flex-start;margin-top:26px;padding:8px 12px;border:1px solid rgba(199,168,109,.25);color:#a99d86;font-size:9px;letter-spacing:.22em}
+.signature-chef-card-open{background:linear-gradient(145deg,rgba(13,13,13,.94),rgba(5,5,5,.98));border-style:dashed}
+.signature-card-seal-open{border:1px solid rgba(199,168,109,.2);border-radius:50%;color:rgba(199,168,109,.52);font-family:Georgia,serif;font-size:34px}
+.signature-card-link{position:relative;z-index:2;margin-top:26px;color:var(--gold);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+
+.signature-page{background:#070707;color:#f3eee5}
+.signature-page-main{min-height:100vh}
+.signature-page-hero{position:relative;min-height:78svh;padding:170px max(24px,calc((100vw - var(--max))/2)) 100px;display:grid;align-content:end;overflow:hidden;background:radial-gradient(circle at 76% 35%,rgba(199,168,109,.11),transparent 28%),linear-gradient(135deg,#050505,#11100d 60%,#070707)}
+.signature-page-hero:before{content:"VII";position:absolute;right:-.02em;top:.04em;font-family:Georgia,serif;font-size:clamp(250px,42vw,650px);line-height:.85;color:transparent;-webkit-text-stroke:1px rgba(199,168,109,.08)}
+.signature-page-hero-copy{position:relative;z-index:1;max-width:980px}
+.signature-page-hero h1{margin:18px 0 26px;font-size:clamp(58px,10vw,130px);line-height:.86;letter-spacing:-.05em}
+.signature-page-hero .hero-line{margin:0;max-width:780px;font-size:clamp(21px,3vw,34px);line-height:1.35}
+.signature-principles{max-width:var(--max);margin:auto;padding:var(--section-space) 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(199,168,109,.15)}
+.signature-principles article{padding:38px;background:#0a0a0a}
+.signature-principles span{color:var(--gold);font-size:10px;letter-spacing:.22em}
+.signature-principles h2{font-size:24px;margin:24px 0 14px}
+.signature-principles p{color:#aaa49a;line-height:1.75}
+.signature-development{max-width:var(--max);margin:auto;padding:var(--section-space) 24px}
+.signature-development-head{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;margin-bottom:52px}
+.signature-development-head h2{font-size:clamp(42px,6vw,76px);margin:12px 0}
+.signature-development-head p{align-self:end;color:#bdb7ad;line-height:1.8;max-width:640px}
+.signature-journey{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.signature-journey article{min-height:260px;padding:30px;border:1px solid rgba(199,168,109,.16);background:linear-gradient(145deg,rgba(199,168,109,.035),transparent)}
+.signature-journey span{color:var(--gold);font-size:10px;letter-spacing:.2em}
+.signature-journey h3{font-family:Georgia,serif;font-size:30px;font-weight:400;margin:56px 0 16px}
+.signature-journey p{color:#aaa49a;line-height:1.75}
+.signature-invitation{margin-top:0;padding:var(--section-space) 24px;text-align:center;border-top:1px solid rgba(199,168,109,.13);background:radial-gradient(circle at center,rgba(199,168,109,.07),transparent 35%)}
+.signature-invitation>div{max-width:800px;margin:auto}
+.signature-invitation h2{font-size:clamp(42px,6vw,78px);margin:18px 0 26px}
+.signature-invitation p{color:#bdb7ad;line-height:1.85}
+.signature-access-preview{display:inline-flex;align-items:center;gap:12px;margin-top:30px;padding:15px 24px;border:1px solid rgba(199,168,109,.34);color:#b8ae9b;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.signature-access-preview:before{content:"";width:7px;height:7px;border-radius:50%;background:#8c7750;box-shadow:0 0 16px rgba(199,168,109,.42)}
+@media(max-width:900px){
+  .signature-circle-intro,.signature-development-head{grid-template-columns:1fr;gap:34px}
+  .signature-circle-grid{grid-template-columns:1fr}
+  .signature-principles,.signature-journey{grid-template-columns:1fr}
+  .signature-chef-card{min-height:390px;padding:28px}
+  .signature-card-seal{width:86px;height:86px;right:28px}
 }
 
 @media(max-width:600px){
