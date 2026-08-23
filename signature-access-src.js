@@ -8,6 +8,26 @@ const loginForm = byId('signatureLoginForm');
 const inviteForm = byId('signatureInviteForm');
 const memberPanel = byId('signatureMemberPanel');
 let inviteToken = '';
+let currentTrackIndex = -1;
+
+const tracks = [
+  'First Glass at Sunset',
+  'Canapés by the Sea',
+  'A Quiet Toast',
+  'Salt in the Evening Air',
+  'Linen in the Sea Breeze',
+  'The Terrace Awakens',
+  'Citrus on the Breeze',
+  'Golden Hour on the Terrace',
+  'Conversations in Amber',
+  'Sunlight Between the Glasses',
+  'When the Villa Turns Gold',
+  'The Last Light Before Dinner',
+].map((title, index) => ({
+  title,
+  number: String(index + 1).padStart(2, '0'),
+  key: `signatures/filipe-silva/arrival-sunset/${String(index + 1).padStart(2, '0')} - ${title}.wav`,
+}));
 
 function message(text) {
   status.textContent = text;
@@ -61,22 +81,48 @@ byId('signatureLogout').addEventListener('click', async () => {
   message('Signed out.');
 });
 
-byId('signatureTestTrack').addEventListener('click', async () => {
-  message('Preparing the test track…');
+async function playTrack(index) {
+  const track = tracks[index];
+  if (!track) return;
+  message(`Preparing ${track.title}…`);
   try {
     const response = await fetch('/.netlify/functions/signature-stream', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ key: 'signatures/filipe-silva/arrival-sunset/01-canapes-by-the-sea.wav' }),
+      body: JSON.stringify({ key: track.key }),
     });
     const result = await response.json();
     if (!response.ok) throw new Error(result.error || 'Track unavailable');
     const audio = byId('signatureAudio');
     audio.src = result.url;
     await audio.play();
-    message('Now playing: Canapés by the Sea');
+    currentTrackIndex = index;
+    document.querySelectorAll('.signature-track').forEach((button, buttonIndex) => {
+      button.classList.toggle('is-playing', buttonIndex === index);
+      button.setAttribute('aria-pressed', buttonIndex === index ? 'true' : 'false');
+    });
+    message(`Now playing: ${track.title}`);
   } catch (error) {
-    message(error?.message || 'The test track could not be played.');
+    message(error?.message || 'The track could not be played.');
+  }
+}
+
+const tracklist = byId('signatureTracklist');
+tracks.forEach((track, index) => {
+  const item = document.createElement('li');
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'signature-track';
+  button.setAttribute('aria-pressed', 'false');
+  button.innerHTML = `<span>${track.number}</span><strong>${track.title}</strong><em>Play</em>`;
+  button.addEventListener('click', () => playTrack(index));
+  item.append(button);
+  tracklist.append(item);
+});
+
+byId('signatureAudio').addEventListener('ended', () => {
+  if (currentTrackIndex >= 0 && currentTrackIndex < tracks.length - 1) {
+    playTrack(currentTrackIndex + 1);
   }
 });
 
