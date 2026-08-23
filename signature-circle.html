@@ -83,7 +83,28 @@
         <div class="section-kicker">Curated by Invitation</div>
         <h2>Not a directory.<br>A distinction.</h2>
         <p>The Signature Circle is intentionally limited. Chefs are recognised for a shared belief in atmosphere, hospitality and the complete dining experience. Individual Signature access is private and becomes available only after personal invitation and activation.</p>
-        <span class="signature-access-preview" aria-label="Private Signature Access is being prepared">Private Signature Access · Preparing the room</span>
+        <div class="signature-access" id="signatureAccess">
+          <button class="signature-access-preview" id="signatureAccessOpen" type="button">Private Signature Access</button>
+          <div class="signature-access-panel" id="signatureAccessPanel" hidden>
+            <p class="signature-access-status" id="signatureAccessStatus" role="status" aria-live="polite"></p>
+            <form id="signatureLoginForm" class="signature-access-form">
+              <label>Email<input id="signatureEmail" name="email" type="email" autocomplete="email" required></label>
+              <label>Password<input id="signaturePassword" name="password" type="password" autocomplete="current-password" minlength="8" required></label>
+              <button type="submit">Enter the Signature</button>
+            </form>
+            <form id="signatureInviteForm" class="signature-access-form" hidden>
+              <p>Choose a password to activate your personal invitation.</p>
+              <label>New password<input id="signatureInvitePassword" name="password" type="password" autocomplete="new-password" minlength="8" required></label>
+              <button type="submit">Activate invitation</button>
+            </form>
+            <div id="signatureMemberPanel" class="signature-member-panel" hidden>
+              <span id="signatureMemberEmail"></span>
+              <button id="signatureTestTrack" type="button">Play test track</button>
+              <audio id="signatureAudio" controls preload="none"></audio>
+              <button id="signatureLogout" class="signature-logout" type="button">Sign out</button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -97,5 +118,6 @@
   <script src="assets/earth-texture-data.js?v=24.4"></script>
   <script src="script.js?v=26.1" defer></script>
   <script src="i18n.js?v=26.1" defer></script>
+  <script src="signature-access.js?v=1" type="module"></script>
 </body>
 </html>
