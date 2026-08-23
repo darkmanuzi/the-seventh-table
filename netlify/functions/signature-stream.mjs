@@ -1,5 +1,6 @@
 import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { getUser } from '@netlify/identity';
 
 const env = (name) => process.env[name] || globalThis.Netlify?.env?.get?.(name) || '';
 
@@ -9,22 +10,14 @@ const headers = {
   'x-content-type-options': 'nosniff',
 };
 
-const response = (statusCode, body) => ({
-  statusCode,
-  headers,
-  body: JSON.stringify(body),
-});
+const response = (status, body) => new Response(JSON.stringify(body), { status, headers });
 
 const accessByRole = Object.freeze({
   'signature-filipe-silva': 'signatures/filipe-silva/',
 });
 
-function getUser(context) {
-  return context?.clientContext?.user || context?.clientContext?.custom?.netlifyIdentity?.user || null;
-}
-
 function getRoles(user) {
-  const roles = user?.app_metadata?.roles;
+  const roles = user?.roles || user?.app_metadata?.roles || user?.appMetadata?.roles;
   return Array.isArray(roles) ? roles.filter((role) => typeof role === 'string') : [];
 }
 
@@ -54,12 +47,12 @@ function r2Client() {
   });
 }
 
-export async function handler(event, context) {
-  if (event.httpMethod !== 'POST') {
+export default async function handler(request) {
+  if (request.method !== 'POST') {
     return response(405, { error: 'Method not allowed' });
   }
 
-  const user = getUser(context);
+  const user = await getUser();
   if (!user) return response(401, { error: 'Authentication required' });
 
   const prefixes = permittedPrefixes(user);
@@ -67,7 +60,7 @@ export async function handler(event, context) {
 
   let body;
   try {
-    body = JSON.parse(event.body || '{}');
+    body = await request.json();
   } catch {
     return response(400, { error: 'Invalid request' });
   }
