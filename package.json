@@ -5,8 +5,15 @@
   "engines": {
     "node": ">=20"
   },
+  "scripts": {
+    "build": "esbuild signature-access-src.js --bundle --minify --format=esm --outfile=signature-access.js"
+  },
   "dependencies": {
+    "@netlify/identity": "^2.0.0",
     "@aws-sdk/client-s3": "^3.883.0",
     "@aws-sdk/s3-request-presigner": "^3.883.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.9"
   }
 }
