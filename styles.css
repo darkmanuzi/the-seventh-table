@@ -918,6 +918,7 @@ img{height:auto}
 .signature-access-preview:before{content:"";width:7px;height:7px;border-radius:50%;background:#8c7750;box-shadow:0 0 16px rgba(199,168,109,.42)}
 .signature-access-preview{background:transparent;cursor:pointer}
 .signature-access-panel{max-width:520px;margin-top:22px;padding:24px;border:1px solid rgba(199,168,109,.24);background:rgba(8,8,8,.72)}
+.signature-access [hidden]{display:none!important}
 .signature-access-status{min-height:20px;margin:0 0 14px;color:#c7a86d;font-size:12px;letter-spacing:.06em}
 .signature-access-form{display:grid;gap:15px}
 .signature-access-form label{display:grid;gap:7px;color:#b8ae9b;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
