@@ -10,7 +10,7 @@ const memberPanel = byId('signatureMemberPanel');
 let inviteToken = '';
 let currentTrackIndex = -1;
 
-const tracks = [
+const arrivalTracks = [
   'First Glass at Sunset',
   'Canapés by the Sea',
   'A Quiet Toast',
@@ -26,8 +26,43 @@ const tracks = [
 ].map((title, index) => ({
   title,
   number: String(index + 1).padStart(2, '0'),
+  chapter: 'CHAPTER I',
+  chapterTitle: 'Arrival & Sunset',
   key: `signatures/filipe-silva/arrival-sunset/${String(index + 1).padStart(2, '0')} - ${title}.wav`,
 }));
+
+const dinnerTracks = [
+  'Candles Before the First Course',
+  'Wine Beneath the Lanterns',
+  'Candlelit Algarve',
+  'Olive Grove Afterglow',
+  'Moonlight Between Courses',
+  'Silverware in Moonlight',
+  'A Course Served Slowly',
+  'Between Plates and Candlelight',
+  'Under the Fig Tree Lights',
+  'Leaves Above the Table',
+  'Wine Poured in Silence',
+  'The Sommelier’s Pause',
+  'Porcelain and Rosemary',
+  'Olive Oil and Candlelight',
+  'Midnight at the Long Table',
+  'Conversations After Midnight',
+  'Stories Over the Second Bottle',
+  'Laughter Beneath the Lanterns',
+  'The Plates Begin to Clear',
+  'Empty Plates, Full Glasses',
+  'Before Dessert Is Served',
+  'Dessert Waits in Candlelight',
+].map((title, index) => ({
+  title,
+  number: String(index + 1).padStart(2, '0'),
+  chapter: 'CHAPTER II',
+  chapterTitle: 'Dinner',
+  key: `signatures/filipe-silva/dinner/${String(index + 1).padStart(2, '0')} – ${title}.wav`,
+}));
+
+const tracks = [...arrivalTracks, ...dinnerTracks];
 
 function message(text) {
   status.textContent = text;
@@ -108,16 +143,30 @@ async function playTrack(index) {
 }
 
 const tracklist = byId('signatureTracklist');
-tracks.forEach((track, index) => {
-  const item = document.createElement('li');
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.className = 'signature-track';
-  button.setAttribute('aria-pressed', 'false');
-  button.innerHTML = `<span>${track.number}</span><strong>${track.title}</strong><em>Play</em>`;
-  button.addEventListener('click', () => playTrack(index));
-  item.append(button);
-  tracklist.append(item);
+[
+  { label: 'CHAPTER I', title: 'Arrival & Sunset', copy: '12 compositions · approximately 37 minutes', tracks: arrivalTracks },
+  { label: 'CHAPTER II', title: 'Dinner', copy: '22 compositions · approximately 60 minutes', tracks: dinnerTracks },
+].forEach((chapter) => {
+  const section = document.createElement('section');
+  section.className = 'signature-player-chapter';
+  section.innerHTML = `<header><small>${chapter.label}</small><h4>${chapter.title}</h4><p>${chapter.copy}</p></header>`;
+  const list = document.createElement('ol');
+  list.className = 'signature-tracklist';
+  list.setAttribute('aria-label', `${chapter.title} tracklist`);
+  chapter.tracks.forEach((track) => {
+    const index = tracks.indexOf(track);
+    const item = document.createElement('li');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'signature-track';
+    button.setAttribute('aria-pressed', 'false');
+    button.innerHTML = `<span>${track.number}</span><strong>${track.title}</strong><em>Play</em>`;
+    button.addEventListener('click', () => playTrack(index));
+    item.append(button);
+    list.append(item);
+  });
+  section.append(list);
+  tracklist.append(section);
 });
 
 byId('signatureAudio').addEventListener('ended', () => {
