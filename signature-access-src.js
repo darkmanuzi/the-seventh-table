@@ -62,7 +62,40 @@ const dinnerTracks = [
   key: `signatures/filipe-silva/dinner/${String(index + 1).padStart(2, '0')} – ${title}.wav`,
 }));
 
-const tracks = [...arrivalTracks, ...dinnerTracks];
+const dessertTracks = [
+  'Dessert Beneath the Stars',
+  'Sweetness in the Night Air',
+  'Coffee After Midnight',
+  'Espresso Under the Lanterns',
+  'The Table Stays Awake',
+  'Conversations Refuse to End',
+  'Lanterns After Dessert',
+  'Another Bottle by the Pool',
+  'The Villa Finds Its Rhythm',
+  'Barefoot by the Pool',
+  'Warm Tiles at Midnight',
+  'Reflections Across the Water',
+  'Midnight Moves Through the Garden',
+  'Dancing Between Olive Trees',
+  'Golden Ripples After Midnight',
+  'Gold Along the Waterline',
+  'The Night Softens Again',
+  'Quiet Laughter by the Pool',
+  'Last Drinks on the Terrace',
+  'Glasses Beneath a Quiet Sky',
+  'Only a Few Lights Remain',
+  'The Terrace Falls Silent',
+  'Until the Villa Sleeps',
+  'The Last Light Goes Out',
+].map((title, index) => ({
+  title,
+  number: String(index + 1).padStart(2, '0'),
+  chapter: 'CHAPTER III',
+  chapterTitle: 'Dessert & After Dinner',
+  key: `signatures/filipe-silva/dessert-after-dinner/${String(index + 1).padStart(2, '0')} – ${title}.wav`,
+}));
+
+const tracks = [...arrivalTracks, ...dinnerTracks, ...dessertTracks];
 
 function message(text) {
   status.textContent = text;
@@ -146,6 +179,7 @@ const tracklist = byId('signatureTracklist');
 [
   { label: 'CHAPTER I', title: 'Arrival & Sunset', copy: '12 compositions · approximately 37 minutes', tracks: arrivalTracks },
   { label: 'CHAPTER II', title: 'Dinner', copy: '22 compositions · approximately 60 minutes', tracks: dinnerTracks },
+  { label: 'CHAPTER III', title: 'Dessert & After Dinner', copy: '24 compositions · approximately 63 minutes', tracks: dessertTracks },
 ].forEach((chapter) => {
   const section = document.createElement('section');
   section.className = 'signature-player-chapter';
